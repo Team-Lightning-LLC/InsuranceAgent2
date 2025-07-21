@@ -141,97 +141,95 @@
                 </div>
             </div>
         </aside>
+<!-- Main Content -->
+<main class="cc-content">
+    <!-- Reserved Results Area -->
+    <div class="results-area" id="resultsArea">
+        <div class="results-placeholder">
+            <div class="placeholder-icon">📊</div>
+            <div class="placeholder-text">AI Analysis Results</div>
+            <div class="placeholder-sub">Process documents to see intelligence summary</div>
+        </div>
+    </div>
 
-        <!-- Main Content -->
-        <main class="cc-content">
-            <!-- AI Processing Results Area -->
-            <div class="results-area" id="resultsArea">
-                <!-- Enterprise-style cards will appear here -->
-                <div class="results-placeholder">
-                    <div class="placeholder-icon">⏳</div>
-                    <div class="placeholder-text">AI Processing Results</div>
-                    <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
+    <!-- Processing Sections -->
+    <div class="processing-sections">
+        <!-- Part 1: Document Processing -->
+        <section class="process-section" id="section-1">
+            <div class="section-header">
+                <div class="section-info">
+                    <h2>📄 Part 1: Document Processing & Analysis</h2>
+                    <div class="section-subtitle">Individual document analysis and compilation</div>
+                </div>
+                <div class="section-controls">
+                    <button class="process-btn" id="btn-part1">Process Documents</button>
+                    <div class="section-status" id="status-1">Ready</div>
                 </div>
             </div>
-
-            <!-- Processing Sections -->
-            <div class="processing-sections">
-                <!-- Part 1: Document Processing -->
-                <section class="process-section" id="section-1">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>📄 Part 1: Document Processing & Analysis</h2>
-                            <div class="section-subtitle">Individual document analysis and compilation</div>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part1">Process Documents</button>
-                            <div class="section-status" id="status-1">Ready</div>
-                        </div>
-                    </div>
-                    <div class="section-content" id="content-1">
-                        <div class="document-grid" id="documentGrid">
-                            <!-- Documents will be populated here -->
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Part 2: Routing -->
-                <section class="process-section" id="section-2">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>👤 Part 2: Intelligent Routing</h2>
-                            <div class="section-subtitle">Optimal adjuster assignment based on complexity</div>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part2" disabled>Process Routing</button>
-                            <div class="section-status" id="status-2">Waiting</div>
-                        </div>
-                    </div>
-                    <div class="section-content" id="content-2">
-                        <!-- Routing content will appear here -->
-                    </div>
-                </section>
-
-                <!-- Part 3: Pattern Analysis -->
-                <section class="process-section" id="section-3">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>🔍 Part 3: Historical Pattern Analysis</h2>
-                            <div class="section-subtitle">Database matching and predictive modeling</div>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part3" disabled>Analyze Patterns</button>
-                            <div class="section-status" id="status-3">Waiting</div>
-                        </div>
-                    </div>
-                    <div class="section-content" id="content-3">
-                        <!-- Pattern analysis content will appear here -->
-                    </div>
-                </section>
-
-                <!-- Part 4: Reserve Intelligence -->
-                <section class="process-section" id="section-4">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>💰 Part 4: Reserve Intelligence</h2>
-                            <div class="section-subtitle">AI-enhanced reserve calculation and comparison</div>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part4" disabled>Calculate Reserves</button>
-                            <div class="section-status" id="status-4">Waiting</div>
-                        </div>
-                    </div>
-                    <div class="section-content" id="content-4">
-                        <!-- Reserve analysis content will appear here -->
-                    </div>
-                </section>
+            <div class="section-content" id="content-1">
+                <div class="document-grid" id="documentGrid">
+                    <!-- Documents will be populated here -->
+                </div>
             </div>
+        </section>
 
-            <!-- Demo Controls -->
-            <div class="demo-controls">
-                <button class="reset-btn" id="resetDemo" style="display:none;">🔄 Reset Demo</button>
+        <!-- Part 2: Routing -->
+        <section class="process-section" id="section-2">
+            <div class="section-header">
+                <div class="section-info">
+                    <h2>👤 Part 2: Intelligent Routing</h2>
+                    <div class="section-subtitle">Optimal adjuster assignment based on complexity</div>
+                </div>
+                <div class="section-controls">
+                    <button class="process-btn" id="btn-part2" disabled>Process Routing</button>
+                    <div class="section-status" id="status-2">Waiting</div>
+                </div>
             </div>
-        </main>
+            <div class="section-content" id="content-2">
+                <!-- Routing content will appear here when processed -->
+            </div>
+        </section>
+
+        <!-- Part 3: Pattern Analysis -->
+        <section class="process-section" id="section-3">
+            <div class="section-header">
+                <div class="section-info">
+                    <h2>🔍 Part 3: Historical Pattern Analysis</h2>
+                    <div class="section-subtitle">Database matching and predictive modeling</div>
+                </div>
+                <div class="section-controls">
+                    <button class="process-btn" id="btn-part3" disabled>Analyze Patterns</button>
+                    <div class="section-status" id="status-3">Waiting</div>
+                </div>
+            </div>
+            <div class="section-content" id="content-3">
+                <!-- Pattern analysis content will appear here when processed -->
+            </div>
+        </section>
+
+        <!-- Part 4: Reserve Intelligence -->
+        <section class="process-section" id="section-4">
+            <div class="section-header">
+                <div class="section-info">
+                    <h2>💰 Part 4: Reserve Intelligence</h2>
+                    <div class="section-subtitle">AI-enhanced reserve calculation and comparison</div>
+                </div>
+                <div class="section-controls">
+                    <button class="process-btn" id="btn-part4" disabled>Calculate Reserves</button>
+                    <div class="section-status" id="status-4">Waiting</div>
+                </div>
+            </div>
+            <div class="section-content" id="content-4">
+                <!-- Reserve analysis content will appear here when processed -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Demo Controls -->
+    <div class="demo-controls">
+        <button class="reset-btn" id="resetDemo" style="display:none;">🔄 Reset Demo</button>
+    </div>
+</main>
     </div>
 
     <script src="assets/js/demo.js"></script>

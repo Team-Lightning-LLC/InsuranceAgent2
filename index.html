@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Claims Processing System - Martinez Family Claim</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ClaimCenter-style Header -->
+    <header class="header-bar">
+        <div class="header-left">
+            <div class="logo-section">
+                <span class="logo">📋 ClaimCenter™</span>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active">Desktop</button>
+                <button class="nav-tab">Claim</button>
+                <button class="nav-tab">Search</button>
+                <button class="nav-tab">Address Book</button>
+                <button class="nav-tab">Vacation</button>
+            </nav>
+        </div>
+        <div class="header-right">
+            <button class="header-btn">Go to [Alt+J]</button>
+            <div class="user-info">👤 J.Torres</div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Actions</h3>
+                <div class="action-item active">
+                    <span class="action-icon">📄</span>
+                    Activities (4)
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Claims (1)</h3>
+                <div class="claim-item active">
+                    <span class="claim-number">2025-0423-187</span>
+                    <span class="claim-status">Processing</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Exposures (3)</h3>
+                <div class="exposure-item">Roberto Martinez - BI</div>
+                <div class="exposure-item">Maria Martinez - BI</div>
+                <div class="exposure-item">Sofia Martinez - BI</div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Subrogations (0)</h3>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Processing Queue</h3>
+                <div class="queue-item">Document Analysis</div>
+                <div class="queue-item">Pattern Matching</div>
+                <div class="queue-item">Reserve Setting</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <!-- Claim Header -->
+            <div class="claim-header">
+                <div class="claim-title">
+                    <h1>Martinez Family vs Steve | T-Bone Collision | April 23, 2025</h1>
+                    <div class="claim-meta">
+                        <span class="claim-number">Claim #2025-0423-187</span>
+                        <span class="status-badge processing">AI Processing Active</span>
+                        <span class="adjuster">Assigned: Jennifer Torres</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-primary" id="startProcessing">▶️ Start AI Analysis</button>
+                    <button class="btn-secondary" id="resetDemo" style="display:none">🔄 Reset Demo</button>
+                </div>
+            </div>
+
+            <!-- Processing Pipeline -->
+            <div class="processing-pipeline">
+                <!-- Part 1: Document Analysis -->
+                <div class="process-section" id="part1">
+                    <div class="section-header">
+                        <h2>📄 Part 1: Document Processing & Analysis</h2>
+                        <div class="section-status" id="part1-status">Ready</div>
+                    </div>
+                    <div class="section-content" id="part1-content">
+                        <div class="document-grid" id="documentGrid">
+                            <!-- Individual documents will be populated here -->
+                        </div>
+                        <div class="compilation-result" id="compilationResult" style="display:none;">
+                            <!-- Compiled analysis results -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: Routing -->
+                <div class="process-section" id="part2">
+                    <div class="section-header">
+                        <h2>👤 Part 2: Intelligent Routing</h2>
+                        <div class="section-status" id="part2-status">Waiting</div>
+                    </div>
+                    <div class="section-content" id="part2-content">
+                        <!-- Routing results -->
+                    </div>
+                </div>
+
+                <!-- Part 3: Pattern Matching -->
+                <div class="process-section" id="part3">
+                    <div class="section-header">
+                        <h2>🔍 Part 3: Historical Pattern Analysis</h2>
+                        <div class="section-status" id="part3-status">Waiting</div>
+                    </div>
+                    <div class="section-content" id="part3-content">
+                        <!-- Pattern matching results -->
+                    </div>
+                </div>
+
+                <!-- Part 4: Reserve Analysis -->
+                <div class="process-section" id="part4">
+                    <div class="section-header">
+                        <h2>💰 Part 4: Reserve Intelligence</h2>
+                        <div class="section-status" id="part4-status">Waiting</div>
+                    </div>
+                    <div class="section-content" id="part4-content">
+                        <!-- Reserve analysis results -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Summary -->
+            <div class="final-summary" id="finalSummary" style="display:none;">
+                <!-- Processing complete summary -->
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/demo.js"></script>
+</body>
+</html>

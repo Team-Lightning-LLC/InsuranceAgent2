@@ -3,219 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClaimCenter - Claim Summary</title>
+    <title>ClaimCenter™</title>
     <link rel="stylesheet" href="assets/css/claimcenter.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- ClaimCenter Header -->
-    <header class="cc-header">
-        <div class="cc-header-left">
-            <div class="cc-logo">
-                <span class="logo-icon">📋</span>
-                <span class="logo-text">ClaimCenter™</span>
-            </div>
-            <nav class="cc-nav-tabs">
-                <button class="nav-tab">Desktop</button>
-                <button class="nav-tab active">Claim</button>
-                <button class="nav-tab">Search</button>
-                <button class="nav-tab">Address Book</button>
-                <button class="nav-tab">Report</button>
-                <button class="nav-tab">Utility</button>
-                <button class="nav-tab">Vacation</button>
-            </nav>
+    <div class="cc-header">
+        <div class="cc-logo">📋 ClaimCenter™</div>
+        <div class="cc-nav">
+            <button class="nav-btn">Desktop</button>
+            <button class="nav-btn active">Claim</button>
+            <button class="nav-btn">Search</button>
+            <button class="nav-btn">Address Book</button>
+            <button class="nav-btn">Report</button>
+            <button class="nav-btn">Utility</button>
+            <button class="nav-btn">Vacation</button>
         </div>
-        <div class="cc-header-right">
-            <span class="policy-number">Pol: 59-123456</span>
-            <span class="separator">|</span>
-            <span class="rep-name">Rep: Ray Newton</span>
-            <span class="separator">|</span>
-            <span class="insured">Ins: 08/05/2023</span>
-            <span class="separator">|</span>
-            <span class="adjuster">Adj: Betty Baker (Maria - Toronto)</span>
+        <div class="cc-info">
+            Pol: 59-123456 | Rep: Ray Newton | Ins: 08/05/2023 | Adj: Betty Baker (Maria - Toronto)
         </div>
-    </header>
+    </div>
 
-    <!-- Breadcrumb Navigation -->
-    <div class="cc-breadcrumb">
-        <span class="breadcrumb-item">🏠 Home</span>
-        <span class="breadcrumb-separator">></span>
-        <span class="breadcrumb-item">📋 Summary</span>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        🏠 Home > 📋 Summary
     </div>
 
     <!-- Main Container -->
-    <div class="cc-main-container">
-        <!-- Left Sidebar -->
-        <aside class="cc-sidebar">
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
             <div class="sidebar-section">
-                <div class="section-header">🏠 Actions</div>
-                <div class="action-item active">
-                    <span class="action-icon">📄</span>
-                    Activities (4)
-                </div>
+                <div class="sidebar-header">🏠 Actions</div>
+                <div class="sidebar-item active">📄 Activities (4)</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">📋 Summary</div>
-                <div class="sub-item active">Overview</div>
+                <div class="sidebar-header">📋 Summary</div>
+                <div class="sidebar-subitem active">Overview</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">📊 Status</div>
+                <div class="sidebar-header">📊 Status</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">💰 Metrics</div>
+                <div class="sidebar-header">💰 Metrics</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">📈 Analytics</div>
+                <div class="sidebar-header">📈 Analytics</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">⏰ Timeline</div>
+                <div class="sidebar-header">⏰ Timeline</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">📁 WorkSets</div>
-                <div class="sub-item">📋 Loss Details</div>
+                <div class="sidebar-header">📁 WorkSets</div>
+                <div class="sidebar-subitem">📋 Loss Details</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">💼 Exposures</div>
-                <div class="sub-item">👤 Parties Involved</div>
+                <div class="sidebar-header">💼 Exposures</div>
+                <div class="sidebar-subitem">👤 Parties Involved</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">📋 Policy</div>
-                <div class="sub-item">💰 Financials</div>
+                <div class="sidebar-header">📋 Policy</div>
+                <div class="sidebar-subitem">💰 Financials</div>
             </div>
-
+            
             <div class="sidebar-section">
-                <div class="section-header">📄 Documents</div>
+                <div class="sidebar-header">📄 Documents</div>
             </div>
-        </aside>
+        </div>
 
-        <!-- Main Content Area -->
-        <main class="cc-content">
+        <!-- Content Area -->
+        <div class="content">
             <!-- Summary Header -->
-            <div class="summary-header">
+            <div class="content-header">
                 <h1>Summary</h1>
-                <div class="summary-actions">
-                    <button class="btn-secondary">Edit</button>
-                    <button class="btn-secondary">Print</button>
-                    <button class="btn-secondary">Complete</button>
-                    <button class="btn-secondary">Approve</button>
-                    <button class="btn-secondary">Reopen</button>
-                    <button class="btn-primary" id="aiAnalyzeBtn">🤖 AI Analysis</button>
+                <div class="header-buttons">
+                    <button class="btn">Edit</button>
+                    <button class="btn">Print</button>
+                    <button class="btn">Complete</button>
+                    <button class="btn">Approve</button>
+                    <button class="btn">Reopen</button>
+                    <button class="btn ai-btn" id="aiAnalysisBtn">🤖 AI Analysis</button>
                 </div>
             </div>
 
-            <!-- Claim Status Bar -->
-            <div class="claim-status-bar">
-                <div class="status-section">
+            <!-- Status Section -->
+            <div class="status-section">
+                <div class="status-item">
                     <div class="status-label">Status</div>
-                    <div class="status-indicator">
-                        <span class="status-dot open"></span>
-                        <span class="status-text">Open</span>
-                    </div>
-                    <div class="days-open">15 days (Target: 120)</div>
+                    <div class="status-value">Open</div>
+                    <div class="status-detail" id="statusDays">15 days (Target: 120)</div>
                 </div>
-
-                <div class="status-section">
+                
+                <div class="status-item">
                     <div class="status-label">Estimated Complexity</div>
-                    <div class="complexity-chart">
-                        <div class="chart-circle" id="complexityChart">
-                            <span class="complexity-score" id="complexityScore">2.5</span>
-                        </div>
-                    </div>
+                    <div class="complexity-score" id="complexityScore">2.5</div>
                 </div>
-
-                <div class="status-section">
+                
+                <div class="status-item">
                     <div class="status-label">Financials</div>
-                    <div class="financial-item">
-                        <span class="financial-label">Gross Incurred</span>
-                        <span class="financial-amount" id="grossIncurred">$16,400.00</span>
+                    <div class="financial-row">
+                        <span>Gross Incurred</span>
+                        <span id="grossIncurred">$16,400.00</span>
                     </div>
-                    <div class="financial-item">
-                        <span class="financial-label">Paid</span>
-                        <span class="financial-amount">$2,000.00</span>
+                    <div class="financial-row">
+                        <span>Paid</span>
+                        <span>$2,000.00</span>
                     </div>
-                    <div class="financial-item">
-                        <span class="financial-label">Reserved</span>
-                        <span class="financial-amount" id="reserveAmount">$0.00</span>
+                    <div class="financial-row">
+                        <span>Reserved</span>
+                        <span id="reservedAmount">$0.00</span>
                     </div>
                 </div>
-
-                <div class="status-section">
+                
+                <div class="status-item">
                     <div class="status-label">High-Risk Indicators</div>
                     <div class="risk-indicators" id="riskIndicators">
-                        <div class="risk-item none">⚠️ Litigation</div>
-                        <div class="risk-item none">🔍 Subrogation in Review</div>
+                        <div class="risk-item inactive">⚠️ Litigation</div>
+                        <div class="risk-item inactive">🔍 Subrogation in Review</div>
                     </div>
                 </div>
             </div>
 
             <!-- Claim Details -->
-            <div class="claim-details-grid">
-                <div class="details-section">
-                    <div class="section-row">
-                        <span class="label">Loss Date:</span>
-                        <span class="value">09/05/2023 12:00 AM</span>
-                    </div>
-                    <div class="section-row">
-                        <span class="label">Notice Date:</span>
-                        <span class="value">09/05/2023</span>
-                    </div>
+            <div class="claim-details">
+                <div class="detail-row">
+                    <span class="detail-label">Loss Date:</span>
+                    <span>09/05/2023 12:00 AM</span>
                 </div>
-
-                <div class="details-section">
-                    <span class="label">Loss Location:</span>
-                    <span class="value">1234 Palmira Ave, Arcadia, CA 91007</span>
+                <div class="detail-row">
+                    <span class="detail-label">Notice Date:</span>
+                    <span>09/05/2023</span>
                 </div>
-
-                <div class="details-section full-width">
-                    <span class="label">Description:</span>
-                    <span class="value" id="claimDescription">Insured hit other party's car on the front passenger side while making turn</span>
+                <div class="detail-row">
+                    <span class="detail-label">Loss Location:</span>
+                    <span>1234 Palmira Ave, Arcadia, CA 91007</span>
+                </div>
+                <div class="detail-row full-width">
+                    <span class="detail-label">Description:</span>
+                    <span id="claimDescription">Insured hit other party's car on the front passenger side while making turn</span>
                 </div>
             </div>
 
-            <!-- AI Processing Section -->
-            <div class="ai-processing-section" id="aiProcessingSection" style="display:none;">
-                <div class="processing-card">
-                    <h3>🤖 AI Claims Analysis</h3>
-                    <div class="processing-steps">
-                        <div class="step-item" id="step1">
-                            <div class="step-header">
-                                <span class="step-title">Part 1: Document Processing & Analysis</span>
-                                <button class="step-btn" id="btn-step1">Process Documents</button>
-                                <span class="step-status">READY</span>
-                            </div>
-                        </div>
-
-                        <div class="step-item" id="step2">
-                            <div class="step-header">
-                                <span class="step-title">Part 2: Intelligent Routing</span>
-                                <button class="step-btn disabled" id="btn-step2">Process Routing</button>
-                                <span class="step-status">WAITING</span>
-                            </div>
-                        </div>
-
-                        <div class="step-item" id="step3">
-                            <div class="step-header">
-                                <span class="step-title">Part 3: Historical Pattern Analysis</span>
-                                <button class="step-btn disabled" id="btn-step3">Analyze Patterns</button>
-                                <span class="step-status">WAITING</span>
-                            </div>
-                        </div>
-
-                        <div class="step-item" id="step4">
-                            <div class="step-header">
-                                <span class="step-title">Part 4: Reserve Intelligence</span>
-                                <button class="step-btn disabled" id="btn-step4">Calculate Reserves</button>
-                                <span class="step-status">WAITING</span>
-                            </div>
-                        </div>
+            <!-- AI Processing Panel (Hidden Initially) -->
+            <div class="ai-panel" id="aiPanel" style="display: none;">
+                <h3>🤖 AI Claims Analysis</h3>
+                
+                <div class="ai-step" id="step1">
+                    <div class="step-content">
+                        <span class="step-title">Part 1: Document Processing & Analysis</span>
+                        <button class="step-btn" id="btn1">Process Documents</button>
+                        <span class="step-status">READY</span>
+                    </div>
+                </div>
+                
+                <div class="ai-step" id="step2">
+                    <div class="step-content">
+                        <span class="step-title">Part 2: Intelligent Routing</span>
+                        <button class="step-btn disabled" id="btn2">Process Routing</button>
+                        <span class="step-status">WAITING</span>
+                    </div>
+                </div>
+                
+                <div class="ai-step" id="step3">
+                    <div class="step-content">
+                        <span class="step-title">Part 3: Historical Pattern Analysis</span>
+                        <button class="step-btn disabled" id="btn3">Analyze Patterns</button>
+                        <span class="step-status">WAITING</span>
+                    </div>
+                </div>
+                
+                <div class="ai-step" id="step4">
+                    <div class="step-content">
+                        <span class="step-title">Part 4: Reserve Intelligence</span>
+                        <button class="step-btn disabled" id="btn4">Calculate Reserves</button>
+                        <span class="step-status">WAITING</span>
                     </div>
                 </div>
             </div>
@@ -226,7 +195,6 @@
                 <table class="exposures-table">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>#</th>
                             <th>Type</th>
                             <th>Coverage</th>
@@ -236,30 +204,27 @@
                             <th>Adj</th>
                         </tr>
                     </thead>
-                    <tbody id="exposuresTableBody">
+                    <tbody>
                         <tr>
-                            <td>🔴</td>
-                            <td>1</td>
+                            <td>🔴 1</td>
                             <td>Bodily Injury</td>
                             <td>Liability - Bodily Injury and Property Damage</td>
-                            <td><span class="risk-indicator low">Low</span></td>
-                            <td><span class="risk-indicator high" id="litigationRisk1">High</span></td>
+                            <td><span class="risk low">Low</span></td>
+                            <td><span class="risk high" id="litigationRisk">High</span></td>
                             <td>Ray Simpson</td>
                             <td>Beth</td>
                         </tr>
                         <tr>
-                            <td>🟢</td>
-                            <td>2</td>
+                            <td>🟢 2</td>
                             <td>Med Pay</td>
                             <td>Medical Payments</td>
-                            <td><span class="risk-indicator low">Low</span></td>
-                            <td><span class="risk-indicator low">Low</span></td>
+                            <td><span class="risk low">Low</span></td>
+                            <td><span class="risk low">Low</span></td>
                             <td>Joan Newton</td>
                             <td>Ruth</td>
                         </tr>
                         <tr>
-                            <td>🟡</td>
-                            <td>3</td>
+                            <td>🟡 3</td>
                             <td>Vehicle</td>
                             <td>Liability - Bodily Injury and Property Damage</td>
                             <td></td>
@@ -268,8 +233,7 @@
                             <td>Beth</td>
                         </tr>
                         <tr>
-                            <td>🔵</td>
-                            <td>4</td>
+                            <td>🔵 4</td>
                             <td>Vehicle</td>
                             <td>Collision</td>
                             <td></td>
@@ -280,27 +244,22 @@
                     </tbody>
                 </table>
             </div>
-
-            <!-- Services Section -->
-            <div class="services-section">
-                <h2>Services</h2>
-            </div>
-        </main>
+        </div>
     </div>
 
-    <!-- AI Analysis Modal -->
-    <div class="modal-overlay" id="aiModal" style="display:none;">
+    <!-- Modal for AI Results -->
+    <div class="modal" id="aiModal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>🤖 AI Analysis Results</h3>
-                <button class="modal-close" id="closeModal">&times;</button>
+                <h3 id="modalTitle">AI Analysis Results</h3>
+                <span class="modal-close" id="modalClose">&times;</span>
             </div>
             <div class="modal-body" id="modalBody">
-                <!-- Analysis results will be populated here -->
+                <!-- Results will be inserted here -->
             </div>
         </div>
     </div>
 
-    <script src="assets/js/claimcenter-demo.js"></script>
+    <script src="assets/js/demo.js"></script>
 </body>
 </html>

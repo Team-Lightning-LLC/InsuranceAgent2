@@ -1,1 +1,76 @@
-
+{
+  "claim": {
+    "id": "2025-0423-187",
+    "type": "T-Bone Collision",
+    "date": "2025-04-23",
+    "location": "Main St & 5th Ave intersection",
+    "status": "Active",
+    "adjuster": "Jennifer Torres"
+  },
+  "parties": {
+    "insured": {
+      "name": "Martinez Family",
+      "vehicle": "2024 Tesla Model S",
+      "occupants": [
+        {
+          "name": "Roberto Martinez",
+          "age": 69,
+          "role": "driver", 
+          "injuries": ["unconscious", "chest trauma"],
+          "medical_history": ["diabetes"],
+          "severity": "critical"
+        },
+        {
+          "name": "Maria Martinez",
+          "age": 67,
+          "role": "passenger",
+          "injuries": ["neck pain", "back trauma"],
+          "severity": "moderate"
+        },
+        {
+          "name": "Sofia Martinez", 
+          "age": 8,
+          "role": "passenger",
+          "injuries": ["facial lacerations"],
+          "severity": "high",
+          "special_considerations": ["minor", "scarring_potential", "growth_concerns"]
+        }
+      ]
+    },
+    "third_party": {
+      "name": "Steve",
+      "vehicle": "2018 Honda Civic",
+      "liability": "at_fault",
+      "violations": ["red_light_violation", "excessive_speed"]
+    }
+  },
+  "policy": {
+    "bodily_injury_per_person": 100000,
+    "bodily_injury_total": 300000,
+    "property_damage": 100000,
+    "medical_payments": 5000
+  },
+  "complexity_indicators": [
+    "minor_involvement",
+    "facial_trauma",
+    "elderly_claimants",
+    "unconscious_driver", 
+    "pre_existing_conditions",
+    "high_speed_impact",
+    "family_dynamics",
+    "high_value_property"
+  ],
+  "ai_analysis": {
+    "complexity_score": 9.1,
+    "traditional_reserve": 115000,
+    "ai_enhanced_reserve": 612500,
+    "confidence": 84,
+    "expected_timeline": "18-24 months",
+    "probability_factors": {
+      "multiple_reserve_increases": 91,
+      "legal_representation": 76,
+      "plastic_surgery": 88,
+      "cardiac_complications": 65
+    }
+  }
+}

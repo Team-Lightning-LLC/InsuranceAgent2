@@ -130,66 +130,175 @@ class EnterpriseClaimsDemo {
         if (sidebarStatus) sidebarStatus.textContent = 'Complete ✓';
     }
 
-    createDocumentAnalysisCard() {
-        const card = {
-            id: 'analysis',
-            title: '📊 Document Analysis Results',
-            content: `
-                <div class="data-grid">
-                    <div class="data-item">
-                        <div class="data-label">Complexity Score</div>
-                        <div class="data-value critical">9.1/10 CRITICAL</div>
-                    </div>
-                    <div class="data-item">
-                        <div class="data-label">Documents Processed</div>
-                        <div class="data-value">4 of 4 Complete</div>
-                    </div>
-                    <div class="data-item">
-                        <div class="data-label">Risk Level</div>
-                        <div class="data-value critical">High</div>
-                    </div>
-                    <div class="data-item">
-                        <div class="data-label">Special Handling</div>
-                        <div class="data-value">Minor + Elderly Required</div>
-                    </div>
+createDocumentAnalysisCard() {
+    const card = {
+        id: 'analysis',
+        title: '📊 Document Analysis Complete',
+        content: `
+            <div class="data-summary">
+                <div class="summary-item">
+                    <div class="summary-label">Complexity</div>
+                    <div class="summary-value critical">9.1/10</div>
                 </div>
-                
-                <table class="enterprise-table">
-                    <thead>
-                        <tr>
-                            <th>Complexity Factor</th>
-                            <th>Assessment</th>
-                            <th>Impact</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Minor Involvement (8-year-old Sofia)</td>
-                            <td>Facial lacerations requiring plastic surgery</td>
-                            <td>Growth-related revision surgeries likely</td>
-                        </tr>
-                        <tr>
-                            <td>Elderly Unconscious (69-year-old Roberto)</td>
-                            <td>Diabetic, unconscious at scene</td>
-                            <td>Cardiac complications probable</td>
-                        </tr>
-                        <tr>
-                            <td>High-Speed Impact</td>
-                            <td>55mph in 35mph zone</td>
-                            <td>Severe injury mechanism</td>
-                        </tr>
-                        <tr>
-                            <td>Family Unit Dynamics</td>
-                            <td>Multi-generational trauma</td>
-                            <td>Complexity multipliers active</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `
-        };
-        
-        this.addResultCard(card);
-    }
+                <div class="summary-item">
+                    <div class="summary-label">Documents</div>
+                    <div class="summary-value">4/4 Complete</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Risk Level</div>
+                    <div class="summary-value critical">Critical</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Handling</div>
+                    <div class="summary-value">Specialist Required</div>
+                </div>
+            </div>
+            
+            <table class="compact-table">
+                <tr>
+                    <td><strong>Minor (Sofia, 8):</strong> Facial trauma requiring plastic surgery</td>
+                </tr>
+                <tr>
+                    <td><strong>Elderly (Roberto, 69):</strong> Unconscious diabetic - cardiac risk</td>
+                </tr>
+                <tr>
+                    <td><strong>High-Speed Impact:</strong> 55mph collision, severe mechanism</td>
+                </tr>
+                <tr>
+                    <td><strong>Family Dynamics:</strong> Multi-generational complexity active</td>
+                </tr>
+            </table>
+        `
+    };
+    
+    this.addResultCard(card);
+}
+
+createRoutingCard() {
+    const card = {
+        id: 'routing',
+        title: '👤 Routing Complete',
+        content: `
+            <div class="data-summary">
+                <div class="summary-item">
+                    <div class="summary-label">Adjuster</div>
+                    <div class="summary-value success">Jennifer Torres</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Match Score</div>
+                    <div class="summary-value success">9.6/10</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Specialization</div>
+                    <div class="summary-value">Senior BI + Minor</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Experience</div>
+                    <div class="summary-value">15 Years</div>
+                </div>
+            </div>
+            
+            <table class="compact-table">
+                <tr>
+                    <td><strong>Qualifications:</strong> ✓ Minor certified ✓ Facial trauma expert ✓ Family dynamics</td>
+                </tr>
+                <tr>
+                    <td><strong>Case Brief:</strong> Priority handling - 8yr Sofia facial, 69yr Roberto cardiac risk, family attorney likely</td>
+                </tr>
+            </table>
+        `
+    };
+    
+    this.addResultCard(card);
+}
+
+createPatternAnalysisCard() {
+    const card = {
+        id: 'patterns',
+        title: '🔍 Pattern Analysis Complete',
+        content: `
+            <div class="data-summary">
+                <div class="summary-item">
+                    <div class="summary-label">Similar Cases</div>
+                    <div class="summary-value">3 Matches</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Range</div>
+                    <div class="summary-value">$380K-$950K</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Timeline</div>
+                    <div class="summary-value">18-24 Months</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Confidence</div>
+                    <div class="summary-value success">87%</div>
+                </div>
+            </div>
+            
+            <table class="compact-table">
+                <tr>
+                    <td><strong>Reserve Increases:</strong> 91% probability (47/52 similar cases)</td>
+                </tr>
+                <tr>
+                    <td><strong>Legal Representation:</strong> 76% within 90 days (39/52 cases)</td>
+                </tr>
+                <tr>
+                    <td><strong>Plastic Surgery:</strong> 88% required (23/26 minor facial)</td>
+                </tr>
+                <tr>
+                    <td><strong>Cardiac Issues:</strong> 65% elderly diabetic (17/26 cases)</td>
+                </tr>
+            </table>
+        `
+    };
+    
+    this.addResultCard(card);
+}
+
+createReserveAnalysisCard() {
+    const card = {
+        id: 'reserves',
+        title: '💰 Reserve Analysis Complete',
+        content: `
+            <div class="data-summary">
+                <div class="summary-item">
+                    <div class="summary-label">Traditional</div>
+                    <div class="summary-value critical">$115K</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">AI-Enhanced</div>
+                    <div class="summary-value success">$612K</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Improvement</div>
+                    <div class="summary-value success">432%</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Confidence</div>
+                    <div class="summary-value">84%</div>
+                </div>
+            </div>
+            
+            <table class="compact-table">
+                <tr>
+                    <td><strong>Roberto (69):</strong> $84K (2.8x elderly/diabetic multiplier)</td>
+                </tr>
+                <tr>
+                    <td><strong>Sofia (8):</strong> $155K (6.2x minor facial/growth multiplier)</td>
+                </tr>
+                <tr>
+                    <td><strong>Maria (67):</strong> $28.5K (1.9x elderly trauma multiplier)</td>
+                </tr>
+                <tr>
+                    <td><strong>Additional:</strong> $345K (surgeries, pain/suffering, legal costs)</td>
+                </tr>
+            </table>
+        `
+    };
+    
+    this.addResultCard(card);
+}
 
     async runPart2() {
         if (this.isProcessing) return;

@@ -3,261 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClaimCenter™</title>
-    <link rel="stylesheet" href="assets/css/claimcenter.css">
+    <title>ClaimCenter - AI Processing Demo</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- ClaimCenter Header -->
-    <div class="cc-header">
-        <div class="cc-logo">📋 ClaimCenter™</div>
-        <div class="cc-nav">
-            <button class="nav-btn">Desktop</button>
-            <button class="nav-btn active">Claim</button>
-            <button class="nav-btn">Search</button>
-            <button class="nav-btn">Address Book</button>
-            <button class="nav-btn">Report</button>
-            <button class="nav-btn">Utility</button>
-            <button class="nav-btn">Vacation</button>
+    <header class="cc-header">
+        <div class="cc-nav-left">
+            <div class="cc-logo">
+                <span class="logo-text">ClaimCenter™</span>
+            </div>
+            <nav class="cc-tabs">
+                <button class="cc-tab active">Desktop</button>
+                <button class="cc-tab">Claim</button>
+                <button class="cc-tab">Search</button>
+                <button class="cc-tab">Address Book</button>
+                <button class="cc-tab">Report</button>
+                <button class="cc-tab">Utility</button>
+                <button class="cc-tab">Vacation</button>
+            </nav>
         </div>
-        <div class="cc-info">
-            Pol: 59-123456 | Rep: Ray Newton | Ins: 08/05/2023 | Adj: Betty Baker (Maria - Toronto)
+        <div class="cc-nav-right">
+            <button class="cc-goto-btn">Go to [Alt+J]</button>
+            <div class="cc-user">J.Torres</div>
         </div>
-    </div>
-
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        🏠 Home > 📋 Summary
-    </div>
+    </header>
 
     <!-- Main Container -->
-    <div class="main-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
+    <div class="cc-container">
+        <!-- Simplified Sidebar -->
+        <aside class="cc-sidebar">
+            <!-- Current Claim -->
             <div class="sidebar-section">
-                <div class="sidebar-header">🏠 Actions</div>
-                <div class="sidebar-item active">📄 Activities (4)</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">📋 Summary</div>
-                <div class="sidebar-subitem active">Overview</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">📊 Status</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">💰 Metrics</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">📈 Analytics</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">⏰ Timeline</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">📁 WorkSets</div>
-                <div class="sidebar-subitem">📋 Loss Details</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">💼 Exposures</div>
-                <div class="sidebar-subitem">👤 Parties Involved</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">📋 Policy</div>
-                <div class="sidebar-subitem">💰 Financials</div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-header">📄 Documents</div>
-            </div>
-        </div>
-
-        <!-- Content Area -->
-        <div class="content">
-            <!-- Summary Header -->
-            <div class="content-header">
-                <h1>Summary</h1>
-                <div class="header-buttons">
-                    <button class="btn">Edit</button>
-                    <button class="btn">Print</button>
-                    <button class="btn">Complete</button>
-                    <button class="btn">Approve</button>
-                    <button class="btn">Reopen</button>
-                    <button class="btn ai-btn" id="aiAnalysisBtn">🤖 AI Analysis</button>
-                </div>
-            </div>
-
-            <!-- Status Section -->
-            <div class="status-section">
-                <div class="status-item">
-                    <div class="status-label">Status</div>
-                    <div class="status-value">Open</div>
-                    <div class="status-detail" id="statusDays">15 days (Target: 120)</div>
-                </div>
-                
-                <div class="status-item">
-                    <div class="status-label">Estimated Complexity</div>
-                    <div class="complexity-score" id="complexityScore">2.5</div>
-                </div>
-                
-                <div class="status-item">
-                    <div class="status-label">Financials</div>
-                    <div class="financial-row">
-                        <span>Gross Incurred</span>
-                        <span id="grossIncurred">$16,400.00</span>
+                <h3 class="section-title">Current Claim</h3>
+                <div class="claim-card">
+                    <div class="claim-header">
+                        <span class="claim-number">2025-0423-187</span>
+                        <span class="claim-badge processing">Processing</span>
                     </div>
-                    <div class="financial-row">
-                        <span>Paid</span>
-                        <span>$2,000.00</span>
-                    </div>
-                    <div class="financial-row">
-                        <span>Reserved</span>
-                        <span id="reservedAmount">$0.00</span>
-                    </div>
-                </div>
-                
-                <div class="status-item">
-                    <div class="status-label">High-Risk Indicators</div>
-                    <div class="risk-indicators" id="riskIndicators">
-                        <div class="risk-item inactive">⚠️ Litigation</div>
-                        <div class="risk-item inactive">🔍 Subrogation in Review</div>
+                    <div class="claim-title">Martinez Family vs Steve</div>
+                    <div class="claim-meta">
+                        <div class="meta-item">April 23, 2025</div>
+                        <div class="meta-item">T-Bone Collision</div>
+                        <div class="meta-item">J. Torres</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Claim Details -->
-            <div class="claim-details">
-                <div class="detail-row">
-                    <span class="detail-label">Loss Date:</span>
-                    <span>09/05/2023 12:00 AM</span>
+            <!-- Documents Only -->
+            <div class="sidebar-section">
+                <h3 class="section-title">Case Documents (4)</h3>
+                <div class="document-list">
+                    <div class="doc-item" data-doc="fnol">
+                        <div class="doc-details">
+                            <div class="doc-name">FNOL Intake</div>
+                            <div class="doc-status" id="sidebar-fnol">Ready</div>
+                        </div>
+                    </div>
+                    <div class="doc-item" data-doc="police">
+                        <div class="doc-details">
+                            <div class="doc-name">Police Report</div>
+                            <div class="doc-status" id="sidebar-police">Ready</div>
+                        </div>
+                    </div>
+                    <div class="doc-item" data-doc="medical">
+                        <div class="doc-details">
+                            <div class="doc-name">Medical Records</div>
+                            <div class="doc-status" id="sidebar-medical">Ready</div>
+                        </div>
+                    </div>
+                    <div class="doc-item" data-doc="photos">
+                        <div class="doc-details">
+                            <div class="doc-name">Damage Photos</div>
+                            <div class="doc-status" id="sidebar-photos">Ready</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="detail-row">
-                    <span class="detail-label">Notice Date:</span>
-                    <span>09/05/2023</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Loss Location:</span>
-                    <span>1234 Palmira Ave, Arcadia, CA 91007</span>
-                </div>
-                <div class="detail-row full-width">
-                    <span class="detail-label">Description:</span>
-                    <span id="claimDescription">Insured hit other party's car on the front passenger side while making turn</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="cc-content">
+            <!-- Large Results Area -->
+            <div class="results-area" id="resultsArea">
+                <div class="results-placeholder">
+                    <div class="placeholder-text">AI Analysis Results</div>
+                    <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
                 </div>
             </div>
 
-            <!-- AI Processing Panel (Hidden Initially) -->
-            <div class="ai-panel" id="aiPanel" style="display: none;">
-                <h3>🤖 AI Claims Analysis</h3>
-                
-                <div class="ai-step" id="step1">
-                    <div class="step-content">
-                        <span class="step-title">Part 1: Document Processing & Analysis</span>
-                        <button class="step-btn" id="btn1">Process Documents</button>
-                        <span class="step-status">READY</span>
+            <!-- Processing Sections -->
+            <div class="processing-sections">
+                <!-- Part 1: Document Processing -->
+                <section class="process-section" id="section-1">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 1: Document Processing & Analysis</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part1">Process Documents</button>
+                            <div class="section-status" id="status-1">Ready</div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="ai-step" id="step2">
-                    <div class="step-content">
-                        <span class="step-title">Part 2: Intelligent Routing</span>
-                        <button class="step-btn disabled" id="btn2">Process Routing</button>
-                        <span class="step-status">WAITING</span>
+                    <div class="section-content" id="content-1">
+                        <div class="document-grid" id="documentGrid">
+                            <!-- Small document cards will be populated here -->
+                        </div>
                     </div>
-                </div>
-                
-                <div class="ai-step" id="step3">
-                    <div class="step-content">
-                        <span class="step-title">Part 3: Historical Pattern Analysis</span>
-                        <button class="step-btn disabled" id="btn3">Analyze Patterns</button>
-                        <span class="step-status">WAITING</span>
+                </section>
+
+                <!-- Part 2: Routing - Header Only -->
+                <section class="process-section" id="section-2">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 2: Intelligent Routing</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part2" disabled>Process Routing</button>
+                            <div class="section-status" id="status-2">Waiting</div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="ai-step" id="step4">
-                    <div class="step-content">
-                        <span class="step-title">Part 4: Reserve Intelligence</span>
-                        <button class="step-btn disabled" id="btn4">Calculate Reserves</button>
-                        <span class="step-status">WAITING</span>
+                </section>
+
+                <!-- Part 3: Pattern Analysis - Header Only -->
+                <section class="process-section" id="section-3">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 3: Historical Pattern Analysis</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part3" disabled>Analyze Patterns</button>
+                            <div class="section-status" id="status-3">Waiting</div>
+                        </div>
                     </div>
-                </div>
+                </section>
+
+                <!-- Part 4: Reserve Intelligence - Header Only -->
+                <section class="process-section" id="section-4">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 4: Reserve Intelligence</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part4" disabled>Calculate Reserves</button>
+                            <div class="section-status" id="status-4">Waiting</div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
-            <!-- Exposures Table -->
-            <div class="exposures-section">
-                <h2>Exposures</h2>
-                <table class="exposures-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Type</th>
-                            <th>Coverage</th>
-                            <th>Foundation Risk</th>
-                            <th>Litigation Risk</th>
-                            <th>Claimant</th>
-                            <th>Adj</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>🔴 1</td>
-                            <td>Bodily Injury</td>
-                            <td>Liability - Bodily Injury and Property Damage</td>
-                            <td><span class="risk low">Low</span></td>
-                            <td><span class="risk high" id="litigationRisk">High</span></td>
-                            <td>Ray Simpson</td>
-                            <td>Beth</td>
-                        </tr>
-                        <tr>
-                            <td>🟢 2</td>
-                            <td>Med Pay</td>
-                            <td>Medical Payments</td>
-                            <td><span class="risk low">Low</span></td>
-                            <td><span class="risk low">Low</span></td>
-                            <td>Joan Newton</td>
-                            <td>Ruth</td>
-                        </tr>
-                        <tr>
-                            <td>🟡 3</td>
-                            <td>Vehicle</td>
-                            <td>Liability - Bodily Injury and Property Damage</td>
-                            <td></td>
-                            <td></td>
-                            <td>Ray Simpson</td>
-                            <td>Beth</td>
-                        </tr>
-                        <tr>
-                            <td>🔵 4</td>
-                            <td>Vehicle</td>
-                            <td>Collision</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Ray Newton</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Demo Controls -->
+            <div class="demo-controls">
+                <button class="reset-btn" id="resetDemo" style="display:none;">Reset Demo</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal for AI Results -->
-    <div class="modal" id="aiModal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">AI Analysis Results</h3>
-                <span class="modal-close" id="modalClose">&times;</span>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Results will be inserted here -->
-            </div>
-        </div>
+        </main>
     </div>
 
     <script src="assets/js/demo.js"></script>

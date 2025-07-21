@@ -1,285 +1,603 @@
-class ClaimCenterDemo {
+/**
+ * AI Claims Processing Demo - Clean Enterprise Style
+ * Professional interface with large results area and compact processing
+ */
+
+class EnterpriseClaimsDemo {
     constructor() {
+        this.completedParts = [];
         this.isProcessing = false;
-        this.originalValues = {
-            complexity: '2.5',
-            grossIncurred: '$16,400.00',
-            reserved: '$0.00',
-            description: 'Insured hit other party\'s car on the front passenger side while making turn'
-        };
+        this.currentResultCard = 0;
+        this.resultCards = [];
         
-        this.aiValues = {
-            complexity: '9.1',
-            grossIncurred: '$612,500.00',
-            reserved: '$612,500.00',
-            description: 'CRITICAL: T-bone collision - 69yr unconscious diabetic driver (Roberto), 8yr minor facial trauma (Sofia), 67yr elderly passenger (Maria). Multi-generational family claim requiring plastic surgery, cardiac monitoring, and specialized handling.'
-        };
+        this.documents = [
+            {
+                id: 'fnol',
+                title: 'FNOL Intake Form',
+                type: 'Initial Report',
+                insights: 'Multi-generational family, elderly driver unconscious, minor with facial trauma',
+                findings: ['Family dynamics', 'Age-related risks', 'Minor involvement', 'Specialized protocols']
+            },
+            {
+                id: 'police',
+                title: 'Police Incident Report',
+                type: 'Official Documentation',
+                insights: 'High-speed T-bone collision, clear liability, DUI suspicion, extensive damage',
+                findings: ['Speed factor', 'Clear liability', 'Criminal element', 'Property damage']
+            },
+            {
+                id: 'medical',
+                title: 'Medical Records',
+                type: 'Treatment Documentation',
+                insights: 'Unconscious elderly diabetic, facial lacerations requiring surgery, trauma',
+                findings: ['Diabetic complications', 'Surgical requirements', 'Growth concerns', 'Age factors']
+            },
+            {
+                id: 'photos',
+                title: 'Damage Assessment Photos',
+                type: 'Visual Evidence',
+                insights: 'Tesla Model S extensive damage, glass fragmentation, airbag deployment',
+                findings: ['High repair costs', 'Impact analysis', 'Safety systems', 'Total loss likely']
+            }
+        ];
         
         this.init();
     }
 
     init() {
+        this.setupDocuments();
         this.bindEvents();
     }
 
     bindEvents() {
-        document.getElementById('aiAnalysisBtn').addEventListener('click', () => this.showAIPanel());
-        document.getElementById('btn1').addEventListener('click', () => this.processStep1());
-        document.getElementById('btn2').addEventListener('click', () => this.processStep2());
-        document.getElementById('btn3').addEventListener('click', () => this.processStep3());
-        document.getElementById('btn4').addEventListener('click', () => this.processStep4());
-        document.getElementById('modalClose').addEventListener('click', () => this.closeModal());
+        document.getElementById('btn-part1').addEventListener('click', () => this.runPart1());
+        document.getElementById('btn-part2').addEventListener('click', () => this.runPart2());
+        document.getElementById('btn-part3').addEventListener('click', () => this.runPart3());
+        document.getElementById('btn-part4').addEventListener('click', () => this.runPart4());
+        document.getElementById('resetDemo').addEventListener('click', () => this.resetDemo());
     }
 
-    showAIPanel() {
-        document.getElementById('aiPanel').style.display = 'block';
-        document.getElementById('aiPanel').scrollIntoView({ behavior: 'smooth' });
+    setupDocuments() {
+        const grid = document.getElementById('documentGrid');
+        
+        this.documents.forEach(doc => {
+            const card = document.createElement('div');
+            card.className = 'document-card';
+            card.id = `doc-${doc.id}`;
+            
+            card.innerHTML = `
+                <div class="document-title">${doc.title}</div>
+                <div class="document-type">${doc.type}</div>
+                <div class="document-insights">${doc.insights}</div>
+                <div class="document-findings" id="findings-${doc.id}"></div>
+            `;
+            
+            grid.appendChild(card);
+        });
     }
 
-    async processStep1() {
+    async runPart1() {
         if (this.isProcessing) return;
+        
         this.isProcessing = true;
+        this.updateButton('btn-part1', 'processing', 'Processing...');
+        this.updateSectionStatus('section-1', 'active');
         
-        this.updateButton('btn1', 'processing', 'Processing Documents...');
-        this.updateStatus('step1', 'PROCESSING...');
+        // Show document grid
+        document.getElementById('content-1').classList.add('show');
         
-        await this.delay(3000);
-        
-        this.updateButton('btn1', 'complete', 'Documents Complete');
-        this.updateStatus('step1', 'COMPLETE');
-        this.enableButton('btn2');
-        
-        this.updateComplexity('6.5');
-        this.showModal('Document Analysis Complete', `
-            <h4>📊 Complexity Assessment: 2.5 → 6.5 (Moderate → High)</h4>
-            <div style="margin: 12px 0;">
-                <strong>Documents Processed:</strong>
-                <ul style="margin: 8px 0; padding-left: 20px;">
-                    <li>FNOL Intake Form - Family dynamics identified</li>
-                    <li>Police Report - High-speed collision, unconscious driver</li>
-                    <li>Medical Records - Minor facial trauma, elderly diabetic</li>
-                    <li>Damage Photos - Tesla Model S extensive damage</li>
-                </ul>
-            </div>
-            <div style="background: #fff3cd; padding: 12px; border-radius: 4px; margin: 12px 0;">
-                <strong>⚠️ Critical Findings:</strong> Minor involvement (8-year-old Sofia), elderly unconscious driver (69-year-old Roberto), multi-generational family trauma
-            </div>
-        `);
-        
-        this.isProcessing = false;
-    }
-
-    async processStep2() {
-        if (this.isProcessing) return;
-        this.isProcessing = true;
-        
-        this.updateButton('btn2', 'processing', 'Processing Routing...');
-        this.updateStatus('step2', 'PROCESSING...');
-        
-        await this.delay(2000);
-        
-        this.updateButton('btn2', 'complete', 'Routing Complete');
-        this.updateStatus('step2', 'COMPLETE');
-        this.enableButton('btn3');
-        
-        this.showModal('Intelligent Routing Complete', `
-            <h4>👤 Optimal Adjuster Assignment</h4>
-            <div style="margin: 12px 0;">
-                <strong>Assigned: Jennifer Torres</strong><br>
-                Match Score: 9.6/10 (Optimal)<br>
-                Senior BI Specialist + Minor Certified (15 years)
-            </div>
-            <div style="background: #d4edda; padding: 12px; border-radius: 4px; margin: 12px 0;">
-                <strong>✅ Qualifications:</strong> Minor certification, facial trauma expertise, family dynamics experience, medical complexity handling
-            </div>
-            <div style="background: #f8f9fa; padding: 12px; border-radius: 4px; margin: 12px 0;">
-                <strong>Case Brief:</strong> "URGENT: Martinez family T-bone collision. Priority handling required for minor facial trauma and elderly cardiac monitoring."
-            </div>
-        `);
-        
-        this.isProcessing = false;
-    }
-
-    async processStep3() {
-        if (this.isProcessing) return;
-        this.isProcessing = true;
-        
-        this.updateButton('btn3', 'processing', 'Analyzing Patterns...');
-        this.updateStatus('step3', 'PROCESSING...');
-        
-        await this.delay(3500);
-        
-        this.updateButton('btn3', 'complete', 'Analysis Complete');
-        this.updateStatus('step3', 'COMPLETE');
-        this.enableButton('btn4');
-        
-        this.updateComplexity('8.7');
-        this.showModal('Historical Pattern Analysis Complete', `
-            <h4>🔍 Similar Cases Found: 3 High-Confidence Matches</h4>
-            <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
-                <tr style="background: #f8f9fa;">
-                    <th style="padding: 8px; border: 1px solid #dee2e6;">Case</th>
-                    <th style="padding: 8px; border: 1px solid #dee2e6;">Similarity</th>
-                    <th style="padding: 8px; border: 1px solid #dee2e6;">Final Payout</th>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;">2023 Minor-facial-elderly-family</td>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;">94%</td>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>$890,000</strong></td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;">2024 Unconscious-elderly-diabetic</td>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;">89%</td>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>$340,000</strong></td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;">2022 Facial-scarring-minor</td>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;">86%</td>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>$485,000</strong></td>
-                </tr>
-            </table>
-            <div style="background: #fff3cd; padding: 12px; border-radius: 4px; margin: 12px 0;">
-                <strong>📈 Predictions:</strong> 91% probability of reserve increases, 76% legal representation within 90 days, 88% plastic surgery required
-            </div>
-        `);
-        
-        this.isProcessing = false;
-    }
-
-    async processStep4() {
-        if (this.isProcessing) return;
-        this.isProcessing = true;
-        
-        this.updateButton('btn4', 'processing', 'Calculating Reserves...');
-        this.updateStatus('step4', 'PROCESSING...');
-        
-        await this.delay(2500);
-        
-        this.updateButton('btn4', 'complete', 'Analysis Complete');
-        this.updateStatus('step4', 'COMPLETE');
-        
-        // Apply all AI enhancements
-        this.applyAIResults();
-        
-        this.showModal('🎯 AI Analysis Complete - Claim Enhanced', `
-            <h4>💰 Reserve Comparison</h4>
-            <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
-                <tr style="background: #f8f9fa;">
-                    <th style="padding: 8px; border: 1px solid #dee2e6;">Method</th>
-                    <th style="padding: 8px; border: 1px solid #dee2e6;">Reserve Amount</th>
-                    <th style="padding: 8px; border: 1px solid #dee2e6;">Accuracy</th>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; border: 1px solid #dee2e6;">Traditional</td>
-                    <td style="padding: 8px; border: 1px solid #dee2e6; color: #e74c3c;"><strong>$115,000</strong></td>
-<td style="padding: 8px; border: 1px solid #dee2e6;">❌ 432% Shortfall</td>
-               </tr>
-               <tr style="background: #d4edda;">
-                   <td style="padding: 8px; border: 1px solid #dee2e6;"><strong>AI-Enhanced</strong></td>
-                   <td style="padding: 8px; border: 1px solid #dee2e6; color: #27ae60;"><strong>$612,500</strong></td>
-                   <td style="padding: 8px; border: 1px solid #dee2e6;">✅ 84% Confidence</td>
-               </tr>
-           </table>
-           <div style="background: #d4edda; padding: 12px; border-radius: 4px; margin: 12px 0;">
-               <strong>🎉 Success:</strong> AI prevented a $497,500 reserve shortfall while ensuring optimal care for the Martinez family. 
-               Claim complexity updated from 2.5 to 9.1 (Critical) with appropriate specialist routing.
-           </div>
-           <div style="background: #f8f9fa; padding: 12px; border-radius: 4px; margin: 12px 0;">
-               <strong>✅ Applied Enhancements:</strong><br>
-               • Complexity score: 2.5 → 9.1 (Critical)<br>
-               • Reserve amount: $0 → $612,500<br>
-               • Risk indicators: Activated<br>
-               • Litigation risk: Escalated to CRITICAL<br>
-               • Description: Enhanced with AI insights
-           </div>
-       `);
+// Process documents individually
+       for (let i = 0; i < this.documents.length; i++) {
+           await this.processDocument(this.documents[i], i * 800);
+       }
+       
+       await this.delay(1000);
+       
+       // Create and show analysis card
+       this.createDocumentAnalysisCard();
+       
+       // Complete part 1
+       this.completePart(1);
+       this.enablePart(2);
        
        this.isProcessing = false;
    }
 
-   applyAIResults() {
-       // Update main claim values
-       document.getElementById('complexityScore').textContent = this.aiValues.complexity;
-       document.getElementById('grossIncurred').textContent = this.aiValues.grossIncurred;
-       document.getElementById('reservedAmount').textContent = this.aiValues.reserved;
-       document.getElementById('claimDescription').textContent = this.aiValues.description;
+   async processDocument(doc, delay) {
+       await this.delay(delay);
        
-       // Update complexity score visual
-       this.updateComplexity('9.1');
+       const card = document.getElementById(`doc-${doc.id}`);
+       const findingsElement = document.getElementById(`findings-${doc.id}`);
+       const sidebarItem = document.querySelector(`[data-doc="${doc.id}"]`);
+       const sidebarStatus = document.getElementById(`sidebar-${doc.id}`);
        
-       // Update risk indicators
-       const riskIndicators = document.getElementById('riskIndicators');
-       riskIndicators.innerHTML = `
-           <div class="risk-item active">⚠️ Minor Involvement - Critical</div>
-           <div class="risk-item active">🔍 Elderly Unconscious - Cardiac Risk</div>
-           <div class="risk-item active">📋 Family Dynamics - Legal Rep Likely</div>
+       // Start processing
+       card.className = 'document-card processing';
+       if (sidebarItem) sidebarItem.className = 'doc-item processing';
+       if (sidebarStatus) sidebarStatus.textContent = 'Analyzing...';
+       
+       await this.delay(1500);
+       
+       // Show findings
+       const findingsHTML = doc.findings.map(finding => 
+           `<span class="finding-tag high">${finding}</span>`
+       ).join('');
+       findingsElement.innerHTML = findingsHTML;
+       
+       // Complete processing
+       card.className = 'document-card complete';
+       if (sidebarItem) sidebarItem.className = 'doc-item complete';
+       if (sidebarStatus) sidebarStatus.textContent = 'Complete';
+   }
+
+   async runPart2() {
+       if (this.isProcessing) return;
+       
+       this.isProcessing = true;
+       this.updateButton('btn-part2', 'processing', 'Processing...');
+       this.updateSectionStatus('section-2', 'active');
+       
+       await this.delay(2500);
+       
+       this.createRoutingCard();
+       this.completePart(2);
+       this.enablePart(3);
+       
+       this.isProcessing = false;
+   }
+
+   async runPart3() {
+       if (this.isProcessing) return;
+       
+       this.isProcessing = true;
+       this.updateButton('btn-part3', 'processing', 'Processing...');
+       this.updateSectionStatus('section-3', 'active');
+       
+       await this.delay(3500);
+       
+       this.createPatternAnalysisCard();
+       this.completePart(3);
+       this.enablePart(4);
+       
+       this.isProcessing = false;
+   }
+
+   async runPart4() {
+       if (this.isProcessing) return;
+       
+       this.isProcessing = true;
+       this.updateButton('btn-part4', 'processing', 'Processing...');
+       this.updateSectionStatus('section-4', 'active');
+       
+       await this.delay(3000);
+       
+       this.createReserveAnalysisCard();
+       this.completePart(4);
+       
+       // Show reset button
+       document.getElementById('resetDemo').style.display = 'block';
+       
+       this.isProcessing = false;
+   }
+
+   createDocumentAnalysisCard() {
+       const card = {
+           id: 'analysis',
+           title: 'Document Analysis Complete',
+           content: `
+               <div class="analysis-grid">
+                   <div class="analysis-item">
+                       <div class="analysis-label">Complexity Score</div>
+                       <div class="analysis-value critical">9.1/10</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Documents Processed</div>
+                       <div class="analysis-value">4 Complete</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Risk Assessment</div>
+                       <div class="analysis-value critical">Critical</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Special Handling</div>
+                       <div class="analysis-value">Required</div>
+                   </div>
+               </div>
+               
+               <table class="professional-table">
+                   <thead>
+                       <tr>
+                           <th>Complexity Factor</th>
+                           <th>Assessment</th>
+                           <th>Impact</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td><strong>Minor Involvement</strong></td>
+                           <td>Sofia Martinez (8 years) - Facial lacerations requiring plastic surgery</td>
+                           <td>Growth-related revision surgeries through age 18</td>
+                       </tr>
+                       <tr>
+                           <td><strong>Elderly Unconscious</strong></td>
+                           <td>Roberto Martinez (69 years) - Diabetic, unconscious at scene</td>
+                           <td>Cardiac complications probable within 60 days</td>
+                       </tr>
+                       <tr>
+                           <td><strong>High-Speed Impact</strong></td>
+                           <td>55mph collision in 35mph zone - Severe mechanism</td>
+                           <td>Extensive injuries and property damage</td>
+                       </tr>
+                       <tr>
+                           <td><strong>Family Unit</strong></td>
+                           <td>Multi-generational trauma across 3 family members</td>
+                           <td>Complexity multipliers and emotional factors active</td>
+                       </tr>
+                   </tbody>
+               </table>
+           `
+       };
+       
+       this.addResultCard(card);
+   }
+
+   createRoutingCard() {
+       const card = {
+           id: 'routing',
+           title: 'Intelligent Routing Complete',
+           content: `
+               <div class="analysis-grid">
+                   <div class="analysis-item">
+                       <div class="analysis-label">Assigned Adjuster</div>
+                       <div class="analysis-value success">Jennifer Torres</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Match Score</div>
+                       <div class="analysis-value success">9.6/10</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Specialization</div>
+                       <div class="analysis-value">Senior BI + Minor</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Experience</div>
+                       <div class="analysis-value">15 Years</div>
+                   </div>
+               </div>
+               
+               <table class="professional-table">
+                   <thead>
+                       <tr>
+                           <th>Qualification Requirement</th>
+                           <th>Jennifer Torres Status</th>
+                           <th>Rationale</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td><strong>Minor Certification</strong></td>
+                           <td style="color: var(--cc-success);">✓ Certified</td>
+                           <td>Required for Sofia Martinez (age 8) handling</td>
+                       </tr>
+                       <tr>
+                           <td><strong>Facial Trauma Expertise</strong></td>
+                           <td style="color: var(--cc-success);">✓ Expert Level</td>
+                           <td>Plastic surgery coordination and revision planning</td>
+                       </tr>
+                       <tr>
+                           <td><strong>Family Dynamics Experience</strong></td>
+                           <td style="color: var(--cc-success);">✓ Extensive</td>
+                           <td>Multi-generational claims management background</td>
+                       </tr>
+                       <tr>
+                           <td><strong>Medical Complexity Handling</strong></td>
+                           <td style="color: var(--cc-success);">✓ Advanced</td>
+                           <td>Elderly diabetic complications and cardiac monitoring</td>
+                       </tr>
+                       <tr>
+                           <td><strong>Current Availability</strong></td>
+                           <td style="color: var(--cc-success);">✓ Available</td>
+                           <td>Immediate assignment with optimal caseload</td>
+                       </tr>
+                   </tbody>
+               </table>
+           `
+       };
+       
+       this.addResultCard(card);
+   }
+
+   createPatternAnalysisCard() {
+       const card = {
+           id: 'patterns',
+           title: 'Historical Pattern Analysis Complete',
+           content: `
+               <div class="analysis-grid">
+                   <div class="analysis-item">
+                       <div class="analysis-label">Similar Cases</div>
+                       <div class="analysis-value">3 High Matches</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Expected Range</div>
+                       <div class="analysis-value">$380K - $950K</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Timeline Forecast</div>
+                       <div class="analysis-value">18-24 Months</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Pattern Confidence</div>
+                       <div class="analysis-value success">87%</div>
+                   </div>
+               </div>
+               
+               <table class="professional-table">
+                   <thead>
+                       <tr>
+                           <th>Historical Case Reference</th>
+                           <th>Similarity Score</th>
+                           <th>Final Settlement</th>
+                           <th>Duration</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td>2023 Minor-facial-elderly-family</td>
+                           <td>94%</td>
+                           <td><strong>$890,000</strong></td>
+                           <td>22 months</td>
+                       </tr>
+                       <tr>
+                           <td>2024 Unconscious-elderly-diabetic</td>
+                           <td>89%</td>
+                           <td><strong>$340,000</strong></td>
+                           <td>16 months</td>
+                       </tr>
+                       <tr>
+                           <td>2022 Facial-scarring-minor</td>
+                           <td>86%</td>
+                           <td><strong>$485,000</strong></td>
+                           <td>19 months</td>
+                       </tr>
+                   </tbody>
+               </table>
+               
+               <table class="professional-table" style="margin-top: 20px;">
+                   <thead>
+                       <tr>
+                           <th>Predictive Factor</th>
+                           <th>Probability</th>
+                           <th>Historical Basis</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td>Multiple reserve increases</td>
+                           <td><strong>91%</strong></td>
+                           <td>47 of 52 similar cases</td>
+                       </tr>
+                       <tr>
+                           <td>Legal representation within 90 days</td>
+                           <td><strong>76%</strong></td>
+                           <td>39 of 52 similar cases</td>
+                       </tr>
+                       <tr>
+                           <td>Plastic surgery requirements</td>
+                           <td><strong>88%</strong></td>
+                           <td>23 of 26 minor facial trauma cases</td>
+                       </tr>
+                       <tr>
+                           <td>Cardiac complications (elderly diabetic)</td>
+                           <td><strong>65%</strong></td>
+                           <td>17 of 26 unconscious diabetic cases</td>
+                       </tr>
+                   </tbody>
+               </table>
+           `
+       };
+       
+       this.addResultCard(card);
+   }
+
+   createReserveAnalysisCard() {
+       const card = {
+           id: 'reserves',
+           title: 'Reserve Intelligence Analysis Complete',
+           content: `
+               <div class="analysis-grid">
+                   <div class="analysis-item">
+                       <div class="analysis-label">Traditional Method</div>
+                       <div class="analysis-value critical">$115,000</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">AI-Enhanced Reserve</div>
+                       <div class="analysis-value success">$612,500</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Accuracy Improvement</div>
+                       <div class="analysis-value success">432%</div>
+                   </div>
+                   <div class="analysis-item">
+                       <div class="analysis-label">Confidence Level</div>
+                       <div class="analysis-value">84%</div>
+                   </div>
+               </div>
+               
+               <table class="professional-table">
+                   <thead>
+                       <tr>
+                           <th>Claimant</th>
+                           <th>Base Assessment</th>
+                           <th>Complexity Multiplier</th>
+                           <th>Adjusted Reserve</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td><strong>Roberto Martinez (69)</strong></td>
+                           <td>$30,000</td>
+                           <td>2.8x (elderly/unconscious/diabetic)</td>
+                           <td><strong>$84,000</strong></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Maria Martinez (67)</strong></td>
+                           <td>$15,000</td>
+                           <td>1.9x (elderly trauma)</td>
+                           <td><strong>$28,500</strong></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Sofia Martinez (8)</strong></td>
+                           <td>$25,000</td>
+                           <td>6.2x (facial trauma/growth factor)</td>
+                           <td><strong>$155,000</strong></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Future surgical procedures</strong></td>
+                           <td colspan="2">Revision surgeries through age 18</td>
+                           <td><strong>$95,000</strong></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Pain & suffering</strong></td>
+                           <td colspan="2">Family unit trauma multiplier</td>
+                           <td><strong>$180,000</strong></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Legal & administrative costs</strong></td>
+                           <td colspan="2">Expected attorney involvement</td>
+                           <td><strong>$70,000</strong></td>
+                       </tr>
+                       <tr style="background: rgba(40, 167, 69, 0.1); font-weight: 600;">
+                           <td><strong>TOTAL AI-ENHANCED RESERVE</strong></td>
+                           <td colspan="3"><strong>$612,500</strong></td>
+                       </tr>
+                   </tbody>
+               </table>
+               
+               <div style="background: var(--cc-off-white); padding: 16px; border-radius: var(--cc-border-radius); margin-top: 16px;">
+                   <strong>Key Intelligence:</strong> Traditional reserving would have created a $497,500 shortfall, requiring significant earnings adjustments. 
+                   AI-enhanced analysis identified critical complexity factors early, preventing financial surprise while ensuring optimal care pathway for the Martinez family.
+                   <br><br>
+                   <strong>Monitoring Triggers:</strong> Automatic reserve reviews scheduled for days 7, 21, 45, 90, and 180.
+               </div>
+           `
+       };
+       
+       this.addResultCard(card);
+   }
+
+   addResultCard(card) {
+       this.resultCards.push(card);
+       this.showResultCard(this.resultCards.length - 1);
+   }
+
+   showResultCard(index) {
+       const resultsArea = document.getElementById('resultsArea');
+       const card = this.resultCards[index];
+       
+       resultsArea.innerHTML = `
+           <div class="result-card active">
+               <div class="result-card-header">
+                   <div class="card-title">${card.title}</div>
+                   <div class="card-navigation">
+                       <button class="nav-btn" ${index === 0 ? 'disabled' : ''} onclick="demo.showResultCard(${index - 1})">Previous</button>
+                       <div class="card-indicator">${index + 1} of ${this.resultCards.length}</div>
+                       <button class="nav-btn" ${index === this.resultCards.length - 1 ? 'disabled' : ''} onclick="demo.showResultCard(${index + 1})">Next</button>
+                   </div>
+               </div>
+               ${card.content}
+           </div>
        `;
        
-       // Update litigation risk in table
-       const litigationRisk = document.getElementById('litigationRisk');
-       litigationRisk.textContent = 'CRITICAL';
-       litigationRisk.className = 'risk critical';
+       this.currentResultCard = index;
    }
 
-   updateComplexity(score) {
-       const scoreElement = document.getElementById('complexityScore');
-       scoreElement.textContent = score;
-       
-       const percentage = (parseFloat(score) / 10) * 100;
-       let color = '#27ae60'; // green
-       
-       if (percentage > 70) color = '#e74c3c'; // red
-       else if (percentage > 40) color = '#f39c12'; // orange
-       
-       scoreElement.style.background = `conic-gradient(${color} ${percentage}%, #ecf0f1 ${percentage}%)`;
-       scoreElement.style.color = color;
-   }
-
-   updateButton(buttonId, state, text) {
-       const button = document.getElementById(buttonId);
-       button.textContent = text;
-       button.className = `step-btn ${state}`;
+   updateButton(id, state, text) {
+       const btn = document.getElementById(id);
+       btn.className = `process-btn ${state}`;
+       btn.textContent = text;
        
        if (state === 'processing') {
-           button.classList.add('processing');
+           btn.disabled = true;
        }
    }
 
-   updateStatus(stepId, status) {
-       const statusElement = document.getElementById(stepId).querySelector('.step-status');
-       statusElement.textContent = status;
+   updateSectionStatus(sectionId, status) {
+       const section = document.getElementById(sectionId);
+       const statusElement = document.getElementById(sectionId.replace('section-', 'status-'));
        
-       if (status.includes('PROCESSING')) {
-           statusElement.style.background = '#f39c12';
-       } else if (status === 'COMPLETE') {
-           statusElement.style.background = '#27ae60';
+       section.className = `process-section ${status}`;
+       statusElement.className = `section-status ${status}`;
+       
+       switch(status) {
+           case 'active':
+               statusElement.textContent = 'Processing...';
+               break;
+           case 'complete':
+               statusElement.textContent = 'Complete';
+               break;
+           default:
+               statusElement.textContent = 'Ready';
        }
    }
 
-   enableButton(buttonId) {
-       const button = document.getElementById(buttonId);
-       button.classList.remove('disabled');
-       button.disabled = false;
-       
-       const stepId = buttonId.replace('btn', 'step');
-       const statusElement = document.getElementById(stepId).querySelector('.step-status');
-       statusElement.textContent = 'READY';
-       statusElement.style.background = '#3498db';
+   completePart(partNumber) {
+       this.completedParts.push(partNumber);
+       this.updateButton(`btn-part${partNumber}`, 'complete', 'Complete');
+       this.updateSectionStatus(`section-${partNumber}`, 'complete');
    }
 
-   showModal(title, content) {
-       document.getElementById('modalTitle').textContent = title;
-       document.getElementById('modalBody').innerHTML = content;
-       document.getElementById('aiModal').style.display = 'flex';
-       
-       // Auto-close after 6 seconds
-       setTimeout(() => {
-           this.closeModal();
-       }, 6000);
+   enablePart(partNumber) {
+       const btn = document.getElementById(`btn-part${partNumber}`);
+       btn.disabled = false;
    }
 
-   closeModal() {
-       document.getElementById('aiModal').style.display = 'none';
+   resetDemo() {
+       this.isProcessing = false;
+       this.completedParts = [];
+       this.currentResultCard = 0;
+       this.resultCards = [];
+       
+       // Reset all buttons
+       for (let i = 1; i <= 4; i++) {
+           const btn = document.getElementById(`btn-part${i}`);
+           btn.className = 'process-btn';
+           btn.disabled = i > 1;
+           
+           // Reset button text
+           const texts = ['Process Documents', 'Process Routing', 'Analyze Patterns', 'Calculate Reserves'];
+           btn.textContent = texts[i - 1];
+           
+           // Reset sections
+           this.updateSectionStatus(`section-${i}`, 'ready');
+       }
+       
+       // Hide content area
+       document.getElementById('content-1').classList.remove('show');
+       
+       // Reset documents
+       this.documents.forEach(doc => {
+           const card = document.getElementById(`doc-${doc.id}`);
+           const findingsElement = document.getElementById(`findings-${doc.id}`);
+           const sidebarItem = document.querySelector(`[data-doc="${doc.id}"]`);
+           const sidebarStatus = document.getElementById(`sidebar-${doc.id}`);
+           
+           card.className = 'document-card';
+           findingsElement.innerHTML = '';
+           if (sidebarItem) sidebarItem.className = 'doc-item';
+           if (sidebarStatus) sidebarStatus.textContent = 'Ready';
+       });
+       
+       // Reset results area
+       const resultsArea = document.getElementById('resultsArea');
+       resultsArea.innerHTML = `
+           <div class="results-placeholder">
+               <div class="placeholder-text">AI Analysis Results</div>
+               <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
+           </div>
+       `;
+       
+       // Hide reset button
+       document.getElementById('resetDemo').style.display = 'none';
    }
 
    delay(ms) {
@@ -288,6 +606,7 @@ class ClaimCenterDemo {
 }
 
 // Initialize demo
+let demo;
 document.addEventListener('DOMContentLoaded', () => {
-   new ClaimCenterDemo();
+   demo = new EnterpriseClaimsDemo();
 });

@@ -1,520 +1,644 @@
 /**
-* AI Claims Processing Demo - ClaimCenter Style
-* 4-Part Processing: Documents → Routing → Pattern Matching → Reserves
-*/
+ * AI Claims Processing Demo - Enterprise ClaimCenter Style
+ * Manual 4-part processing with professional result cards
+ */
 
-class ClaimsProcessingDemo {
-   constructor() {
-       this.currentPart = 0;
-       this.isProcessing = false;
-       this.processingParts = [
-           {
-               id: 'part1',
-               name: 'Document Processing',
-               duration: 8000,
-               method: 'processDocuments'
-           },
-           {
-               id: 'part2', 
-               name: 'Intelligent Routing',
-               duration: 3000,
-               method: 'processRouting'
-           },
-           {
-               id: 'part3',
-               name: 'Pattern Analysis', 
-               duration: 6000,
-               method: 'processPatterns'
-           },
-           {
-               id: 'part4',
-               name: 'Reserve Intelligence',
-               duration: 4000, 
-               method: 'processReserves'
-           }
-       ];
-       
-       this.documents = [
-           {
-               id: 'fnol',
-               title: 'FNOL Intake Form',
-               type: 'Initial Report',
-               insights: 'Multi-generational family, elderly driver unconscious, minor with facial trauma',
-               complexity: 'high',
-               findings: ['Family dynamics', 'Age-related risks', 'Minor involvement']
-           },
-           {
-               id: 'police',
-               title: 'Police Incident Report', 
-               type: 'Official Report',
-               insights: 'High-speed T-bone collision, clear liability, DUI suspicion, extensive damage',
-               complexity: 'high',
-               findings: ['Speed factor', 'Clear liability', 'Criminal element']
-           },
-           {
-               id: 'medical',
-               title: 'Medical Records',
-               type: 'Treatment Documentation', 
-               insights: 'Unconscious elderly diabetic, facial lacerations requiring surgery, neck injuries',
-               complexity: 'high',
-               findings: ['Diabetic complications', 'Surgical requirements', 'Growth concerns']
-           },
-           {
-               id: 'photos',
-               title: 'Damage Assessment',
-               type: 'Visual Evidence',
-               insights: 'Tesla Model S extensive damage, glass fragmentation pattern, impact physics',
-               complexity: 'medium',
-               findings: ['High repair costs', 'Glass pattern analysis', 'Impact severity']
-           }
-       ];
-       
-       this.init();
-   }
+class EnterpriseClaimsDemo {
+    constructor() {
+        this.completedParts = [];
+        this.isProcessing = false;
+        this.currentResultCard = 0;
+        this.resultCards = [];
+        
+        this.documents = [
+            {
+                id: 'fnol',
+                title: 'FNOL Intake Form',
+                type: 'Initial Report',
+                insights: 'Multi-generational family involvement, elderly driver unconscious, minor with facial trauma requiring specialized handling',
+                findings: ['Family dynamics', 'Age-related risks', 'Minor involvement', 'Specialized protocols']
+            },
+            {
+                id: 'police',
+                title: 'Police Incident Report',
+                type: 'Official Documentation',
+                insights: 'High-speed T-bone collision at 55mph, clear liability determination, DUI suspicion pending toxicology, extensive property damage',
+                findings: ['Speed factor', 'Clear liability', 'Criminal element', 'Property damage']
+            },
+            {
+                id: 'medical',
+                title: 'Medical Records',
+                type: 'Treatment Documentation',
+                insights: 'Unconscious elderly diabetic driver, minor facial lacerations requiring plastic surgery, neck and back trauma in elderly passenger',
+                findings: ['Diabetic complications', 'Surgical requirements', 'Growth concerns', 'Age-related factors']
+            },
+            {
+                id: 'photos',
+                title: 'Damage Assessment Photos',
+                type: 'Visual Evidence',
+                insights: 'Tesla Model S extensive structural damage, glass fragmentation pattern consistent with high-speed impact, airbag deployment successful',
+                findings: ['High repair costs', 'Impact analysis', 'Safety systems', 'Total loss likely']
+            }
+        ];
+        
+        this.init();
+    }
 
-   init() {
-       this.setupInitialDocuments();
-       this.bindEvents();
-   }
+    init() {
+        this.setupDocuments();
+        this.bindEvents();
+    }
 
-   bindEvents() {
-       document.getElementById('startProcessing').addEventListener('click', () => this.startProcessing());
-       document.getElementById('resetDemo').addEventListener('click', () => this.resetDemo());
-   }
+    bindEvents() {
+        document.getElementById('btn-part1').addEventListener('click', () => this.runPart1());
+        document.getElementById('btn-part2').addEventListener('click', () => this.runPart2());
+        document.getElementById('btn-part3').addEventListener('click', () => this.runPart3());
+        document.getElementById('btn-part4').addEventListener('click', () => this.runPart4());
+        document.getElementById('resetDemo').addEventListener('click', () => this.resetDemo());
+    }
 
-   setupInitialDocuments() {
-       const grid = document.getElementById('documentGrid');
-       
-       this.documents.forEach(doc => {
-           const docCard = document.createElement('div');
-           docCard.className = 'document-card';
-           docCard.id = `doc-${doc.id}`;
-           
-           docCard.innerHTML = `
-               <div class="document-header">
-                   <div class="document-title">${doc.title}</div>
-                   <div class="document-status ready" id="status-${doc.id}">Ready</div>
-               </div>
-               <div class="document-type">${doc.type}</div>
-               <div class="document-insights">${doc.insights}</div>
-               <div class="document-findings" id="findings-${doc.id}"></div>
-           `;
-           
-           grid.appendChild(docCard);
-       });
-   }
+    setupDocuments() {
+        const grid = document.getElementById('documentGrid');
+        
+        this.documents.forEach(doc => {
+            const card = document.createElement('div');
+            card.className = 'document-card';
+            card.id = `doc-${doc.id}`;
+            
+            card.innerHTML = `
+                <div class="document-header">
+                    <div class="document-title">${doc.title}</div>
+                </div>
+                <div class="document-type">${doc.type}</div>
+                <div class="document-insights">${doc.insights}</div>
+                <div class="document-findings" id="findings-${doc.id}"></div>
+            `;
+            
+            grid.appendChild(card);
+        });
+    }
 
-   async startProcessing() {
-       if (this.isProcessing) return;
-       
-       this.isProcessing = true;
-       document.getElementById('startProcessing').disabled = true;
-       
-       // Process each part sequentially
-       for (let i = 0; i < this.processingParts.length; i++) {
-           await this[this.processingParts[i].method]();
-           if (i < this.processingParts.length - 1) {
-               await this.delay(500);
-           }
-       }
-       
-       this.showFinalSummary();
-   }
+    async runPart1() {
+        if (this.isProcessing) return;
+        
+        this.isProcessing = true;
+        this.updateButton('btn-part1', 'processing', '⏳ Processing...');
+        this.updateSectionStatus('section-1', 'active');
+        this.updateQueueStatus(1, 'active');
+        
+        // Process documents individually
+        for (let i = 0; i < this.documents.length; i++) {
+            await this.processDocument(this.documents[i], i * 1000);
+        }
+        
+        await this.delay(1000);
+        
+        // Create and show enterprise result card
+        this.createDocumentAnalysisCard();
+        
+        // Complete part 1
+        this.completePart(1);
+        this.enablePart(2);
+        
+        this.isProcessing = false;
+    }
 
-   async processDocuments() {
-       // Update section status
-       this.updateSectionStatus('part1', 'processing');
-       
-       // Process each document individually
-       for (let i = 0; i < this.documents.length; i++) {
-           const doc = this.documents[i];
-           await this.processIndividualDocument(doc, i * 1500);
-       }
-       
-       // Wait for all documents to finish
-       await this.delay(2000);
-       
-       // Show compilation result
-       await this.showCompilationResult();
-       
-       this.updateSectionStatus('part1', 'complete');
-   }
+    async processDocument(doc, delay) {
+        await this.delay(delay);
+        
+        const card = document.getElementById(`doc-${doc.id}`);
+        const findingsElement = document.getElementById(`findings-${doc.id}`);
+        const sidebarItem = document.querySelector(`[data-doc="${doc.id}"]`);
+        const sidebarStatus = document.getElementById(`sidebar-${doc.id}`);
+        
+        // Start processing
+        card.className = 'document-card processing';
+        if (sidebarItem) sidebarItem.className = 'doc-item processing';
+        if (sidebarStatus) sidebarStatus.textContent = 'Analyzing...';
+        
+        await this.delay(2000);
+        
+        // Show findings
+        const findingsHTML = doc.findings.map(finding => 
+            `<span class="finding-tag high">${finding}</span>`
+        ).join('');
+        findingsElement.innerHTML = findingsHTML;
+        
+        // Complete processing
+        card.className = 'document-card complete';
+        if (sidebarItem) sidebarItem.className = 'doc-item complete';
+        if (sidebarStatus) sidebarStatus.textContent = 'Complete ✓';
+    }
 
-   async processIndividualDocument(doc, delay) {
-       await this.delay(delay);
-       
-       const docCard = document.getElementById(`doc-${doc.id}`);
-       const statusElement = document.getElementById(`status-${doc.id}`);
-       const findingsElement = document.getElementById(`findings-${doc.id}`);
-       
-       // Start processing
-       docCard.className = 'document-card processing';
-       statusElement.className = 'document-status processing';
-       statusElement.textContent = 'Analyzing...';
-       
-       // Simulate processing time
-       await this.delay(2000);
-       
-       // Show findings
-       const findingsHTML = doc.findings.map(finding => 
-           `<span class="complexity-indicator ${doc.complexity}">${finding}</span>`
-       ).join('');
-       findingsElement.innerHTML = findingsHTML;
-       
-       // Complete processing
-       docCard.className = 'document-card complete';
-       statusElement.className = 'document-status complete';
-       statusElement.textContent = 'Complete ✓';
-   }
+    createDocumentAnalysisCard() {
+        const card = {
+            id: 'analysis',
+            title: '📊 Document Analysis Results',
+            content: `
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="data-label">Complexity Score</div>
+                        <div class="data-value critical">9.1/10 CRITICAL</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Documents Processed</div>
+                        <div class="data-value">4 of 4 Complete</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Risk Level</div>
+                        <div class="data-value critical">High</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Special Handling</div>
+                        <div class="data-value">Minor + Elderly Required</div>
+                    </div>
+                </div>
+                
+                <table class="enterprise-table">
+                    <thead>
+                        <tr>
+                            <th>Complexity Factor</th>
+                            <th>Assessment</th>
+                            <th>Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Minor Involvement (8-year-old Sofia)</td>
+                            <td>Facial lacerations requiring plastic surgery</td>
+                            <td>Growth-related revision surgeries likely</td>
+                        </tr>
+                        <tr>
+                            <td>Elderly Unconscious (69-year-old Roberto)</td>
+                            <td>Diabetic, unconscious at scene</td>
+                            <td>Cardiac complications probable</td>
+                        </tr>
+                        <tr>
+                            <td>High-Speed Impact</td>
+                            <td>55mph in 35mph zone</td>
+                            <td>Severe injury mechanism</td>
+                        </tr>
+                        <tr>
+                            <td>Family Unit Dynamics</td>
+                            <td>Multi-generational trauma</td>
+                            <td>Complexity multipliers active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+        };
+        
+        this.addResultCard(card);
+    }
 
-   async showCompilationResult() {
-       const compilationDiv = document.getElementById('compilationResult');
-       
-       compilationDiv.innerHTML = `
-           <h3>📊 Master Document Compilation</h3>
-           <div class="complexity-score">9.1/10 CRITICAL COMPLEXITY</div>
-           <p>All documents processed and cross-analyzed. Master case profile created.</p>
-           
-           <div class="key-findings">
-               <div class="finding-item">
-                   <strong>👧 Minor Involvement</strong><br>
-                   8-year-old Sofia with facial lacerations requiring plastic surgery
-               </div>
-               <div class="finding-item">
-                   <strong>👴 Elderly Unconscious</strong><br>
-                   69-year-old Roberto, diabetic, unconscious at scene
-               </div>
-               <div class="finding-item">
-                   <strong>🏎️ High-Speed Impact</strong><br>
-                   55mph in 35mph zone, severe T-bone collision
-               </div>
-               <div class="finding-item">
-                   <strong>👨‍👩‍👧 Family Dynamics</strong><br>
-                   Multi-generational complexity multipliers active
-               </div>
-           </div>
-       `;
-       
-       compilationDiv.style.display = 'block';
-       compilationDiv.classList.add('slide-in');
-   }
+    async runPart2() {
+        if (this.isProcessing) return;
+        
+        this.isProcessing = true;
+        this.updateButton('btn-part2', 'processing', '⏳ Processing...');
+        this.updateSectionStatus('section-2', 'active');
+        this.updateQueueStatus(2, 'active');
+        
+        await this.delay(2500);
+        
+        this.createRoutingCard();
+        this.completePart(2);
+        this.enablePart(3);
+        
+        this.isProcessing = false;
+    }
 
-   async processRouting() {
-       this.updateSectionStatus('part2', 'processing');
-       
-       const content = document.getElementById('part2-content');
-       
-       // Simulate analysis
-       await this.delay(1500);
-       
-       content.innerHTML = `
-           <div class="results-table-container">
-               <h4>🎯 Optimal Assignment Complete</h4>
-               
-               <table class="results-table">
-                   <tr>
-                       <th>Assigned Adjuster</th>
-                       <td><strong>Jennifer Torres</strong></td>
-                   </tr>
-                   <tr>
-                       <th>Match Score</th>
-                       <td><span style="color: var(--cc-success); font-weight: 600;">9.6/10 (Optimal)</span></td>
-                   </tr>
-                   <tr>
-                       <th>Specialization</th>
-                       <td>Senior BI + Minor Specialist (15 years experience)</td>
-                   </tr>
-                   <tr>
-                       <th>Current Capacity</th>
-                       <td><span style="color: var(--cc-success);">Available ✓</span></td>
-                   </tr>
-               </table>
+    createRoutingCard() {
+        const card = {
+            id: 'routing',
+            title: '👤 Intelligent Routing Results',
+            content: `
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="data-label">Assigned Adjuster</div>
+                        <div class="data-value success">Jennifer Torres</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Match Score</div>
+                        <div class="data-value success">9.6/10 Optimal</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Specialization</div>
+                        <div class="data-value">Senior BI + Minor Specialist</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Experience</div>
+                        <div class="data-value">15 Years</div>
+                    </div>
+                </div>
+                
+                <table class="enterprise-table">
+                    <thead>
+                        <tr>
+                            <th>Qualification</th>
+                            <th>Requirement</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Minor Certification</td>
+                            <td>Required for Sofia (age 8)</td>
+                            <td><span style="color: var(--cc-success);">✓ Qualified</span></td>
+                        </tr>
+                        <tr>
+                            <td>Facial Trauma Expertise</td>
+                            <td>Plastic surgery coordination</td>
+                            <td><span style="color: var(--cc-success);">✓ High Experience</span></td>
+                        </tr>
+                        <tr>
+                            <td>Family Dynamics</td>
+                            <td>Multi-generational claims</td>
+                            <td><span style="color: var(--cc-success);">✓ Extensive Background</span></td>
+                        </tr>
+                        <tr>
+                            <td>Medical Complexity</td>
+                            <td>Elderly diabetic complications</td>
+                            <td><span style="color: var(--cc-success);">✓ Advanced Training</span></td>
+                        </tr>
+                        <tr>
+                            <td>Current Capacity</td>
+                            <td>Immediate availability</td>
+                            <td><span style="color: var(--cc-success);">✓ Available</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="background: var(--cc-off-white); padding: 16px; border-radius: var(--cc-border-radius); margin-top: 16px;">
+                    <strong>Case Brief for Jennifer Torres:</strong><br>
+                    <em>"PRIORITY: Martinez family T-bone collision. 8-year-old Sofia facial lacerations requiring plastic surgery consultation. 69-year-old Roberto unconscious/diabetic - monitor for cardiac complications. 67-year-old Maria neck/back trauma. Expect family attorney involvement within 90 days. Document minor consent procedures immediately."</em>
+                </div>
+            `
+        };
+        
+        this.addResultCard(card);
+    }
 
-               <div style="margin-top: 16px;">
-                   <h5>✅ Qualification Verification</h5>
-                   <div class="complexity-indicator low">✓ Minor certification: QUALIFIED</div>
-                   <div class="complexity-indicator low">✓ Facial trauma expertise: HIGH</div>
-                   <div class="complexity-indicator low">✓ Family dynamics experience: EXTENSIVE</div>
-                   <div class="complexity-indicator low">✓ Medical complexity: ADVANCED</div>
-               </div>
+    async runPart3() {
+        if (this.isProcessing) return;
+        
+        this.isProcessing = true;
+        this.updateButton('btn-part3', 'processing', '⏳ Processing...');
+        this.updateSectionStatus('section-3', 'active');
+        this.updateQueueStatus(3, 'active');
+        
+        await this.delay(4000);
+        
+        this.createPatternAnalysisCard();
+        this.completePart(3);
+        this.enablePart(4);
+        
+        this.isProcessing = false;
+    }
 
-               <div style="background: var(--cc-off-white); padding: 12px; border-radius: var(--border-radius); margin-top: 16px;">
-                   <strong>📋 Case Brief for Jennifer:</strong><br>
-                   <em>"URGENT: Martinez family T-bone collision. 8yr Sofia facial lacerations, 69yr Roberto unconscious/diabetic, 67yr Maria neck/back. Expect pediatric plastic surgery, elderly cardiac complications, family attorney likely. Priority: Document minor consent immediately."</em>
-               </div>
-           </div>
-       `;
-       
-       this.updateSectionStatus('part2', 'complete');
-   }
+    createPatternAnalysisCard() {
+        const card = {
+            id: 'patterns',
+            title: '🔍 Historical Pattern Analysis',
+            content: `
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="data-label">Similar Cases Found</div>
+                        <div class="data-value">3 High-Confidence Matches</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Expected Range</div>
+                        <div class="data-value">$380K - $950K</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Timeline Prediction</div>
+                        <div class="data-value">18-24 Months</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Pattern Confidence</div>
+                        <div class="data-value success">87%</div>
+                    </div>
+                </div>
+                
+                <table class="enterprise-table">
+                    <thead>
+                        <tr>
+                            <th>Historical Case</th>
+                            <th>Similarity Score</th>
+                            <th>Final Payout</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023 Minor-facial-elderly-family</td>
+                            <td>94%</td>
+                            <td>$890,000</td>
+                            <td>22 months</td>
+                        </tr>
+                        <tr>
+                            <td>2024 Unconscious-elderly-diabetic</td>
+                            <td>89%</td>
+                            <td>$340,000</td>
+                            <td>16 months</td>
+                        </tr>
+                        <tr>
+                            <td>2022 Facial-scarring-minor</td>
+                            <td>86%</td>
+                            <td>$485,000</td>
+                            <td>19 months</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <table class="enterprise-table" style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>Predictive Factor</th>
+                            <th>Probability</th>
+                            <th>Based on Historical Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Multiple reserve increases</td>
+                            <td>91%</td>
+                            <td>47 of 52 similar cases</td>
+                        </tr>
+                        <tr>
+                            <td>Legal representation within 90 days</td>
+                            <td>76%</td>
+                            <td>39 of 52 similar cases</td>
+                        </tr>
+                        <tr>
+                            <td>Plastic surgery requirements</td>
+                            <td>88%</td>
+                            <td>23 of 26 minor facial trauma cases</td>
+                        </tr>
+                        <tr>
+                            <td>Cardiac complications (elderly diabetic)</td>
+                            <td>65%</td>
+                            <td>17 of 26 unconscious diabetic cases</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+        };
+        
+        this.addResultCard(card);
+    }
 
-   async processPatterns() {
-       this.updateSectionStatus('part3', 'processing');
-       
-       const content = document.getElementById('part3-content');
-       
-       // Simulate database search
-       await this.delay(2000);
-       
-       content.innerHTML = `
-           <h4>🔍 Database Pattern Matching</h4>
-           <p><strong>Similar Cases Found:</strong> 3 high-confidence matches</p>
-           
-           <div class="pattern-cards">
-               <div class="pattern-card">
-                   <h4>📊 Historical Case Matches</h4>
-                   <div class="pattern-match">
-                       <span>2023 Minor-facial-elderly-family</span>
-                       <span class="match-amount">$890K final payout</span>
-                   </div>
-                   <div class="pattern-match">
-                       <span>2024 Unconscious-elderly-diabetic</span>
-                       <span class="match-amount">$340K final payout</span>
-                   </div>
-                   <div class="pattern-match">
-                       <span>2022 Facial-scarring-minor</span>
-                       <span class="match-amount">$485K final payout</span>
-                   </div>
-               </div>
-               
-               <div class="pattern-card">
-                   <h4>📈 Predictive Model Results</h4>
-                   <div class="complexity-indicator high">📊 91% probability of multiple reserve increases</div>
-                   <div class="complexity-indicator high">⚖️ 76% probability of legal representation within 90 days</div>
-                   <div class="complexity-indicator high">🏥 88% probability of plastic surgery requirements</div>
-                   <div class="complexity-indicator medium">❤️ 65% probability of cardiac complications (elderly diabetic)</div>
-               </div>
-           </div>
-           
-           <div style="background: var(--cc-success); color: white; padding: 16px; border-radius: var(--border-radius); margin-top: 16px;">
-               <strong>Expected Final Range:</strong> $380K - $950K<br>
-               <strong>Estimated Timeline:</strong> 18-24 months
-           </div>
-       `;
-       
-       await this.delay(2000);
-       this.updateSectionStatus('part3', 'complete');
-   }
+    async runPart4() {
+        if (this.isProcessing) return;
+        
+        this.isProcessing = true;
+        this.updateButton('btn-part4', 'processing', '⏳ Processing...');
+        this.updateSectionStatus('section-4', 'active');
+        this.updateQueueStatus(4, 'active');
+        
+        await this.delay(3000);
+        
+        this.createReserveAnalysisCard();
+        this.completePart(4);
+        
+        // Show reset button since all parts are complete
+        document.getElementById('resetDemo').style.display = 'block';
+        
+        this.isProcessing = false;
+    }
 
-   async processReserves() {
-       this.updateSectionStatus('part4', 'processing');
-       
-       const content = document.getElementById('part4-content');
-       
-       await this.delay(1000);
-       
-       content.innerHTML = `
-           <h4>💰 Reserve Intelligence Analysis</h4>
-           
-           <div class="reserve-comparison">
-               <div class="reserve-card traditional">
-                   <div class="reserve-label">Traditional Method</div>
-                   <div class="reserve-amount">$115,000</div>
-                   <div class="reserve-description">Basic injury assessment</div>
-               </div>
-               <div class="reserve-card ai-enhanced">
-                   <div class="reserve-label">AI-Enhanced Prediction</div>
-                   <div class="reserve-amount">$612,500</div>
-                   <div class="reserve-description">Pattern-based complexity adjustment</div>
-               </div>
-           </div>
-           
-           <h5>🧮 Detailed Breakdown</h5>
-           <table class="results-table">
-               <thead>
-                   <tr>
-                       <th>Claimant</th>
-                       <th>Base Reserve</th>
-                       <th>Complexity Multiplier</th>
-                       <th>Adjusted Amount</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   <tr>
-                       <td>Roberto (69, diabetic, unconscious)</td>
-                       <td>$30,000</td>
-                       <td>2.8x (elderly/diabetic/trauma)</td>
-                       <td><strong>$84,000</strong></td>
-                   </tr>
-                   <tr>
-                       <td>Maria (67, neck/back trauma)</td>
-                       <td>$15,000</td>
-                       <td>1.9x (elderly trauma)</td>
-                       <td><strong>$28,500</strong></td>
-                   </tr>
-                   <tr>
-                       <td>Sofia (8, facial trauma)</td>
-                       <td>$25,000</td>
-                       <td>6.2x (minor facial/growth)</td>
-                       <td><strong>$155,000</strong></td>
-                   </tr>
-                   <tr>
-                       <td>Future surgeries</td>
-                       <td colspan="2">Revision procedures through age 18</td>
-                       <td><strong>$95,000</strong></td>
-                   </tr>
-                   <tr>
-                       <td>Pain & suffering</td>
-                       <td colspan="2">Family unit trauma multiplier</td>
-                       <td><strong>$180,000</strong></td>
-                   </tr>
-                   <tr>
-                       <td>Legal/administrative</td>
-                       <td colspan="2">Expected attorney involvement</td>
-                       <td><strong>$25,000</strong></td>
-                   </tr>
-                   <tr style="background: var(--cc-success); color: white; font-weight: 600;">
-                       <td><strong>TOTAL AI RESERVE</strong></td>
-                       <td colspan="3"><strong>$612,500</strong></td>
-                   </tr>
-               </tbody>
-           </table>
-           
-           <div style="background: var(--cc-off-white); padding: 12px; border-radius: var(--border-radius); margin-top: 16px;">
-               <strong>Confidence Level:</strong> 84% | <strong>Monitoring Triggers:</strong> Days 7, 21, 45, 90, 180
-           </div>
-       `;
-       
-       await this.delay(2000);
-       this.updateSectionStatus('part4', 'complete');
-   }
+    createReserveAnalysisCard() {
+        const card = {
+            id: 'reserves',
+            title: '💰 Reserve Intelligence Analysis',
+            content: `
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="data-label">Traditional Method</div>
+                        <div class="data-value critical">$115,000</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">AI-Enhanced Reserve</div>
+                        <div class="data-value success">$612,500</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Accuracy Improvement</div>
+                        <div class="data-value success">432% Better</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Confidence Level</div>
+                        <div class="data-value">84%</div>
+                    </div>
+                </div>
+                
+                <table class="enterprise-table">
+                    <thead>
+                        <tr>
+                            <th>Claimant</th>
+                            <th>Base Assessment</th>
+                            <th>Complexity Multiplier</th>
+                            <th>Adjusted Reserve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Roberto Martinez (69, diabetic)</td>
+                            <td>$30,000</td>
+                            <td>2.8x (elderly/unconscious/diabetic)</td>
+                            <td><strong>$84,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Maria Martinez (67, passenger)</td>
+                            <td>$15,000</td>
+                            <td>1.9x (elderly trauma)</td>
+                            <td><strong>$28,500</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Sofia Martinez (8, minor)</td>
+                            <td>$25,000</td>
+                            <td>6.2x (facial trauma/growth factor)</td>
+                            <td><strong>$155,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Future surgical procedures</td>
+                            <td colspan="2">Revision surgeries through age 18</td>
+                            <td><strong>$95,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Pain & suffering</td>
+                            <td colspan="2">Family unit trauma multiplier</td>
+                            <td><strong>$180,000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Legal & administrative costs</td>
+                            <td colspan="2">Expected attorney involvement</td>
+                            <td><strong>$70,000</strong></td>
+                        </tr>
+                        <tr style="background: rgba(40, 167, 69, 0.1); font-weight: 600;">
+                            <td><strong>TOTAL AI-ENHANCED RESERVE</strong></td>
+                            <td colspan="3"><strong>$612,500</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="background: var(--cc-off-white); padding: 16px; border-radius: var(--cc-border-radius); margin-top: 16px;">
+                    <strong>Key Intelligence:</strong> Traditional reserving would have created a $497,500 shortfall, requiring significant earnings adjustments. 
+                    AI-enhanced analysis identified critical complexity factors early, preventing financial surprise while ensuring optimal care pathway for the Martinez family.
+                    <br><br>
+                    <strong>Monitoring Triggers:</strong> Automatic reserve reviews scheduled for days 7, 21, 45, 90, and 180.
+                </div>
+            `
+        };
+        
+        this.addResultCard(card);
+    }
 
-   showFinalSummary() {
-       const summaryDiv = document.getElementById('finalSummary');
-       
-       summaryDiv.innerHTML = `
-           <h2>🎯 Processing Complete - Martinez Family Claim</h2>
-           <p>All AI agents have completed comprehensive analysis. Claim is optimally configured with unprecedented accuracy.</p>
-           
-           <div class="summary-stats">
-               <div class="stat-card">
-                   <span class="stat-value">9.1/10</span>
-                   <span class="stat-label">Complexity Score</span>
-               </div>
-               <div class="stat-card">
-                   <span class="stat-value">$612,500</span>
-                   <span class="stat-label">AI Reserve</span>
-               </div>
-               <div class="stat-card">
-                   <span class="stat-value">Jennifer Torres</span>
-                   <span class="stat-label">Optimal Adjuster</span>
-               </div>
-               <div class="stat-card">
-                   <span class="stat-value">18-24 mo</span>
-                   <span class="stat-label">Timeline</span>
-               </div>
-               <div class="stat-card">
-                   <span class="stat-value">84%</span>
-                   <span class="stat-label">Confidence</span>
-               </div>
-               <div class="stat-card">
-                   <span class="stat-value">$497K</span>
-                   <span class="stat-label">Avoided Shortfall</span>
-               </div>
-           </div>
-           
-           <div style="background: rgba(255,255,255,0.15); padding: 16px; border-radius: var(--border-radius); margin-top: 20px;">
-               <strong>💡 Key Intelligence:</strong> Traditional methods would have set reserves 432% below predicted needs. 
-               Our AI system identified critical complexity factors early, preventing massive earnings surprise while ensuring 
-               optimal care pathway for the Martinez family.
-           </div>
-       `;
-       
-       summaryDiv.style.display = 'block';
-       summaryDiv.classList.add('slide-in');
-       
-       // Show reset button
-       const resetBtn = document.getElementById('resetDemo');
-       const startBtn = document.getElementById('startProcessing');
-       
-       resetBtn.style.display = 'inline-block';
-       startBtn.textContent = '✅ ANALYSIS COMPLETE';
-       startBtn.disabled = true;
-   }
+    addResultCard(card) {
+        this.resultCards.push(card);
+        this.showResultCard(this.resultCards.length - 1);
+    }
 
-   updateSectionStatus(partId, status) {
-       const section = document.getElementById(partId);
-       const statusElement = document.getElementById(`${partId}-status`);
-       
-       // Update visual state
-       section.className = `process-section ${status}`;
-       statusElement.className = `section-status ${status}`;
-       
-       // Update status text
-       switch(status) {
-           case 'processing':
-               statusElement.textContent = 'Processing...';
-               break;
-           case 'complete':
-               statusElement.textContent = 'Complete ✓';
-               break;
-           default:
-               statusElement.textContent = 'Ready';
-       }
-   }
+    showResultCard(index) {
+        const resultsArea = document.getElementById('resultsArea');
+        const card = this.resultCards[index];
+        
+        // Clear existing content
+        resultsArea.innerHTML = `
+            <div class="result-card active">
+                <div class="result-card-header">
+                    <div class="card-title">${card.title}</div>
+                    <div class="card-navigation">
+                        <button class="nav-btn" id="prevCard" ${index === 0 ? 'disabled' : ''} onclick="demo.showResultCard(${index - 1})">‹ Previous</button>
+                        <div class="card-indicator">${index + 1} of ${this.resultCards.length}</div>
+                        <button class="nav-btn" id="nextCard" ${index === this.resultCards.length - 1 ? 'disabled' : ''} onclick="demo.showResultCard(${index + 1})">Next ›</button>
+                    </div>
+                </div>
+                ${card.content}
+            </div>
+        `;
+        
+        this.currentResultCard = index;
+    }
 
-   resetDemo() {
-       this.isProcessing = false;
-       this.currentPart = 0;
-       
-       // Reset all sections
-       this.processingParts.forEach(part => {
-           this.updateSectionStatus(part.id, 'ready');
-           document.getElementById(`${part.id}-content`).innerHTML = '';
-       });
-       
-       // Reset documents
-       this.documents.forEach(doc => {
-           const docCard = document.getElementById(`doc-${doc.id}`);
-           const statusElement = document.getElementById(`status-${doc.id}`);
-           const findingsElement = document.getElementById(`findings-${doc.id}`);
-           
-           docCard.className = 'document-card';
-           statusElement.className = 'document-status ready';
-           statusElement.textContent = 'Ready';
-           findingsElement.innerHTML = '';
-       });
-       
-       // Hide compilation and summary
-       document.getElementById('compilationResult').style.display = 'none';
-       document.getElementById('finalSummary').style.display = 'none';
-       
-       // Reset buttons
-       const startBtn = document.getElementById('startProcessing');
-       const resetBtn = document.getElementById('resetDemo');
-       
-       startBtn.disabled = false;
-       startBtn.textContent = '▶️ Start AI Analysis';
-       resetBtn.style.display = 'none';
-       
-       // Update sidebar queue
-       const queueItems = document.querySelectorAll('.queue-item');
-       queueItems.forEach(item => {
-           item.style.background = 'transparent';
-       });
-   }
+    updateButton(id, state, text) {
+        const btn = document.getElementById(id);
+        btn.className = `process-btn ${state}`;
+        btn.textContent = text;
+        
+        if (state === 'processing') {
+            btn.disabled = true;
+        }
+    }
 
-   delay(ms) {
-       return new Promise(resolve => setTimeout(resolve, ms));
-   }
+    updateSectionStatus(sectionId, status) {
+        const section = document.getElementById(sectionId);
+        const statusElement = document.getElementById(sectionId.replace('section-', 'status-'));
+        
+        section.className = `process-section ${status}`;
+        statusElement.className = `section-status ${status}`;
+        
+        switch(status) {
+            case 'active':
+                statusElement.textContent = 'Processing...';
+                break;
+            case 'complete':
+                statusElement.textContent = 'Complete ✓';
+                break;
+            default:
+                statusElement.textContent = 'Ready';
+        }
+    }
+
+    updateQueueStatus(queueNumber, status) {
+        const queueItem = document.getElementById(`queue-${queueNumber}`);
+        const queueStatus = document.getElementById(`queue-status-${queueNumber}`);
+        
+        // Remove existing classes
+        queueItem.classList.remove('active', 'complete');
+        
+        if (status !== 'ready') {
+            queueItem.classList.add(status);
+        }
+        
+        switch(status) {
+            case 'active':
+                queueStatus.textContent = 'Processing...';
+                break;
+            case 'complete':
+                queueStatus.textContent = 'Complete ✓';
+                break;
+            default:
+                queueStatus.textContent = 'Waiting';
+        }
+    }
+
+    completePart(partNumber) {
+        this.completedParts.push(partNumber);
+        this.updateButton(`btn-part${partNumber}`, 'complete', '✅ Complete');
+        this.updateSectionStatus(`section-${partNumber}`, 'complete');
+        this.updateQueueStatus(partNumber, 'complete');
+    }
+
+    enablePart(partNumber) {
+        const btn = document.getElementById(`btn-part${partNumber}`);
+        btn.disabled = false;
+    }
+
+    resetDemo() {
+        this.isProcessing = false;
+        this.completedParts = [];
+        this.currentResultCard = 0;
+        this.resultCards = [];
+        
+        // Reset all buttons
+        for (let i = 1; i <= 4; i++) {
+            const btn = document.getElementById(`btn-part${i}`);
+            btn.className = 'process-btn';
+            btn.disabled = i > 1;
+            
+            // Reset button text
+            const texts = ['Process Documents', 'Process Routing', 'Analyze Patterns', 'Calculate Reserves'];
+            btn.textContent = texts[i - 1];
+            
+            // Reset sections
+            this.updateSectionStatus(`section-${i}`, 'ready');
+            this.updateQueueStatus(i, i === 1 ? 'ready' : 'waiting');
+        }
+        
+        // Reset documents
+        this.documents.forEach(doc => {
+            const card = document.getElementById(`doc-${doc.id}`);
+            const findingsElement = document.getElementById(`findings-${doc.id}`);
+            const sidebarItem = document.querySelector(`[data-doc="${doc.id}"]`);
+            const sidebarStatus = document.getElementById(`sidebar-${doc.id}`);
+            
+            card.className = 'document-card';
+            findingsElement.innerHTML = '';
+            if (sidebarItem) sidebarItem.className = 'doc-item';
+            if (sidebarStatus) sidebarStatus.textContent = 'Ready';
+        });
+        
+        // Reset results area
+        const resultsArea = document.getElementById('resultsArea');
+        resultsArea.innerHTML = `
+            <div class="results-placeholder">
+                <div class="placeholder-icon">⏳</div>
+                <div class="placeholder-text">AI Processing Results</div>
+                <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
+            </div>
+        `;
+        
+        // Hide reset button
+        document.getElementById('resetDemo').style.display = 'none';
+    }
+
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 }
 
-// Initialize demo when page loads
+// Initialize demo
+let demo;
 document.addEventListener('DOMContentLoaded', () => {
-   new ClaimsProcessingDemo();
+    demo = new EnterpriseClaimsDemo();
 });
-
-// Demo analytics
-window.demoMetrics = {
-   startTime: null,
-   interactions: [],
-   
-   trackEvent(event, data) {
-       this.interactions.push({
-           timestamp: new Date(),
-           event,
-           data
-       });
-       console.log(`Demo Event: ${event}`, data);
-   }
-};

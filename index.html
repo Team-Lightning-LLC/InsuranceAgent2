@@ -12,7 +12,6 @@
     <header class="cc-header">
         <div class="cc-nav-left">
             <div class="cc-logo">
-                <span class="logo-icon">📋</span>
                 <span class="logo-text">ClaimCenter™</span>
             </div>
             <nav class="cc-tabs">
@@ -27,17 +26,17 @@
         </div>
         <div class="cc-nav-right">
             <button class="cc-goto-btn">Go to [Alt+J]</button>
-            <div class="cc-user">👤 J.Torres</div>
+            <div class="cc-user">J.Torres</div>
         </div>
     </header>
 
     <!-- Main Container -->
     <div class="cc-container">
-        <!-- Sidebar -->
+        <!-- Simplified Sidebar -->
         <aside class="cc-sidebar">
             <!-- Current Claim -->
             <div class="sidebar-section">
-                <h3 class="section-title">📋 Current Claim</h3>
+                <h3 class="section-title">Current Claim</h3>
                 <div class="claim-card">
                     <div class="claim-header">
                         <span class="claim-number">2025-0423-187</span>
@@ -45,40 +44,36 @@
                     </div>
                     <div class="claim-title">Martinez Family vs Steve</div>
                     <div class="claim-meta">
-                        <div class="meta-item">📅 April 23, 2025</div>
-                        <div class="meta-item">🚗 T-Bone Collision</div>
-                        <div class="meta-item">👤 J. Torres</div>
+                        <div class="meta-item">April 23, 2025</div>
+                        <div class="meta-item">T-Bone Collision</div>
+                        <div class="meta-item">J. Torres</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Documents -->
+            <!-- Documents Only -->
             <div class="sidebar-section">
-                <h3 class="section-title">📄 Case Documents (4)</h3>
+                <h3 class="section-title">Case Documents (4)</h3>
                 <div class="document-list">
                     <div class="doc-item" data-doc="fnol">
-                        <div class="doc-icon">📝</div>
                         <div class="doc-details">
                             <div class="doc-name">FNOL Intake</div>
                             <div class="doc-status" id="sidebar-fnol">Ready</div>
                         </div>
                     </div>
                     <div class="doc-item" data-doc="police">
-                        <div class="doc-icon">👮</div>
                         <div class="doc-details">
                             <div class="doc-name">Police Report</div>
                             <div class="doc-status" id="sidebar-police">Ready</div>
                         </div>
                     </div>
                     <div class="doc-item" data-doc="medical">
-                        <div class="doc-icon">🏥</div>
                         <div class="doc-details">
                             <div class="doc-name">Medical Records</div>
                             <div class="doc-status" id="sidebar-medical">Ready</div>
                         </div>
                     </div>
                     <div class="doc-item" data-doc="photos">
-                        <div class="doc-icon">📸</div>
                         <div class="doc-details">
                             <div class="doc-name">Damage Photos</div>
                             <div class="doc-status" id="sidebar-photos">Ready</div>
@@ -86,150 +81,83 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Parties -->
-            <div class="sidebar-section">
-                <h3 class="section-title">👥 Parties Involved (3)</h3>
-                <div class="party-list">
-                    <div class="party-item critical">
-                        <div class="party-name">Roberto Martinez</div>
-                        <div class="party-detail">Driver (69) - Critical</div>
-                    </div>
-                    <div class="party-item moderate">
-                        <div class="party-name">Maria Martinez</div>
-                        <div class="party-detail">Passenger (67) - Moderate</div>
-                    </div>
-                    <div class="party-item high">
-                        <div class="party-name">Sofia Martinez</div>
-                        <div class="party-detail">Minor (8) - Facial Trauma</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Processing Queue -->
-            <div class="sidebar-section">
-                <h3 class="section-title">⚙️ AI Processing Queue</h3>
-                <div class="queue-list">
-                    <div class="queue-item" id="queue-1">
-                        <div class="queue-number">1</div>
-                        <div class="queue-details">
-                            <div class="queue-name">Document Analysis</div>
-                            <div class="queue-status" id="queue-status-1">Ready</div>
-                        </div>
-                    </div>
-                    <div class="queue-item" id="queue-2">
-                        <div class="queue-number">2</div>
-                        <div class="queue-details">
-                            <div class="queue-name">Routing</div>
-                            <div class="queue-status" id="queue-status-2">Waiting</div>
-                        </div>
-                    </div>
-                    <div class="queue-item" id="queue-3">
-                        <div class="queue-number">3</div>
-                        <div class="queue-details">
-                            <div class="queue-name">Pattern Analysis</div>
-                            <div class="queue-status" id="queue-status-3">Waiting</div>
-                        </div>
-                    </div>
-                    <div class="queue-item" id="queue-4">
-                        <div class="queue-number">4</div>
-                        <div class="queue-details">
-                            <div class="queue-name">Reserve Setting</div>
-                            <div class="queue-status" id="queue-status-4">Waiting</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </aside>
-<!-- Main Content -->
-<main class="cc-content">
-    <!-- Reserved Results Area -->
-    <div class="results-area" id="resultsArea">
-        <div class="results-placeholder">
-            <div class="placeholder-icon">📊</div>
-            <div class="placeholder-text">AI Analysis Results</div>
-            <div class="placeholder-sub">Process documents to see intelligence summary</div>
-        </div>
-    </div>
 
-    <!-- Processing Sections -->
-    <div class="processing-sections">
-        <!-- Part 1: Document Processing -->
-        <section class="process-section" id="section-1">
-            <div class="section-header">
-                <div class="section-info">
-                    <h2>📄 Part 1: Document Processing & Analysis</h2>
-                    <div class="section-subtitle">Individual document analysis and compilation</div>
-                </div>
-                <div class="section-controls">
-                    <button class="process-btn" id="btn-part1">Process Documents</button>
-                    <div class="section-status" id="status-1">Ready</div>
+        <!-- Main Content -->
+        <main class="cc-content">
+            <!-- Large Results Area -->
+            <div class="results-area" id="resultsArea">
+                <div class="results-placeholder">
+                    <div class="placeholder-text">AI Analysis Results</div>
+                    <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
                 </div>
             </div>
-            <div class="section-content" id="content-1">
-                <div class="document-grid" id="documentGrid">
-                    <!-- Documents will be populated here -->
-                </div>
-            </div>
-        </section>
 
-        <!-- Part 2: Routing -->
-        <section class="process-section" id="section-2">
-            <div class="section-header">
-                <div class="section-info">
-                    <h2>👤 Part 2: Intelligent Routing</h2>
-                    <div class="section-subtitle">Optimal adjuster assignment based on complexity</div>
-                </div>
-                <div class="section-controls">
-                    <button class="process-btn" id="btn-part2" disabled>Process Routing</button>
-                    <div class="section-status" id="status-2">Waiting</div>
-                </div>
-            </div>
-            <div class="section-content" id="content-2">
-                <!-- Routing content will appear here when processed -->
-            </div>
-        </section>
+            <!-- Processing Sections -->
+            <div class="processing-sections">
+                <!-- Part 1: Document Processing -->
+                <section class="process-section" id="section-1">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 1: Document Processing & Analysis</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part1">Process Documents</button>
+                            <div class="section-status" id="status-1">Ready</div>
+                        </div>
+                    </div>
+                    <div class="section-content" id="content-1">
+                        <div class="document-grid" id="documentGrid">
+                            <!-- Small document cards will be populated here -->
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Part 3: Pattern Analysis -->
-        <section class="process-section" id="section-3">
-            <div class="section-header">
-                <div class="section-info">
-                    <h2>🔍 Part 3: Historical Pattern Analysis</h2>
-                    <div class="section-subtitle">Database matching and predictive modeling</div>
-                </div>
-                <div class="section-controls">
-                    <button class="process-btn" id="btn-part3" disabled>Analyze Patterns</button>
-                    <div class="section-status" id="status-3">Waiting</div>
-                </div>
-            </div>
-            <div class="section-content" id="content-3">
-                <!-- Pattern analysis content will appear here when processed -->
-            </div>
-        </section>
+                <!-- Part 2: Routing - Header Only -->
+                <section class="process-section" id="section-2">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 2: Intelligent Routing</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part2" disabled>Process Routing</button>
+                            <div class="section-status" id="status-2">Waiting</div>
+                        </div>
+                    </div>
+                </section>
 
-        <!-- Part 4: Reserve Intelligence -->
-        <section class="process-section" id="section-4">
-            <div class="section-header">
-                <div class="section-info">
-                    <h2>💰 Part 4: Reserve Intelligence</h2>
-                    <div class="section-subtitle">AI-enhanced reserve calculation and comparison</div>
-                </div>
-                <div class="section-controls">
-                    <button class="process-btn" id="btn-part4" disabled>Calculate Reserves</button>
-                    <div class="section-status" id="status-4">Waiting</div>
-                </div>
-            </div>
-            <div class="section-content" id="content-4">
-                <!-- Reserve analysis content will appear here when processed -->
-            </div>
-        </section>
-    </div>
+                <!-- Part 3: Pattern Analysis - Header Only -->
+                <section class="process-section" id="section-3">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 3: Historical Pattern Analysis</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part3" disabled>Analyze Patterns</button>
+                            <div class="section-status" id="status-3">Waiting</div>
+                        </div>
+                    </div>
+                </section>
 
-    <!-- Demo Controls -->
-    <div class="demo-controls">
-        <button class="reset-btn" id="resetDemo" style="display:none;">🔄 Reset Demo</button>
-    </div>
-</main>
+                <!-- Part 4: Reserve Intelligence - Header Only -->
+                <section class="process-section" id="section-4">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 4: Reserve Intelligence</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part4" disabled>Calculate Reserves</button>
+                            <div class="section-status" id="status-4">Waiting</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Demo Controls -->
+            <div class="demo-controls">
+                <button class="reset-btn" id="resetDemo" style="display:none;">Reset Demo</button>
+            </div>
+        </main>
     </div>
 
     <script src="assets/js/demo.js"></script>

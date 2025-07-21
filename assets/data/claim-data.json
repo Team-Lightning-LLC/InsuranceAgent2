@@ -1,154 +1,102 @@
 {
- "claim": {
-   "id": "2025-0423-187",
-   "type": "Motor Vehicle Accident - T-Bone Collision",
-   "date": "2025-04-23",
-   "time": "14:47",
-   "location": "Main St & 5th Ave intersection",
-   "status": "Active - AI Processing",
-   "adjuster": "Jennifer Torres",
-   "jurisdiction": "California"
- },
- "parties": {
-   "insured": {
-     "policy_holder": "Martinez Family",
-     "vehicle": {
-       "year": 2024,
-       "make": "Tesla",
-       "model": "Model S",
-       "vin": "5YJSA1E26MF123456",
-       "estimated_damage": 65000
-     },
-     "occupants": [
-       {
-         "name": "Roberto Martinez",
-         "age": 69,
-         "role": "driver",
-         "injuries": ["unconscious at scene", "chest trauma", "possible cardiac complications"],
-         "medical_history": ["Type 2 diabetes", "hypertension"],
-         "severity": "critical"
-       },
-       {
-         "name": "Maria Martinez",
-         "age": 67,
-         "role": "front passenger",
-         "injuries": ["neck pain", "back trauma", "disorientation"],
-         "medical_history": [],
-         "severity": "moderate"
-       },
-       {
-         "name": "Sofia Martinez",
-         "age": 8,
-         "role": "rear passenger",
-         "injuries": ["facial lacerations", "glass fragmentation wounds"],
-         "medical_history": [],
-         "severity": "high",
-         "special_considerations": ["minor", "plastic surgery required", "growth-related revision surgeries"]
-       }
-     ]
-   },
-   "third_party": {
-     "name": "Steve Johnson",
-     "age": 34,
-     "vehicle": {
-       "year": 2018,
-       "make": "Honda",
-       "model": "Civic",
-       "estimated_damage": 15000
-     },
-     "liability": "at_fault",
-     "violations": ["failure to obey traffic signal", "excessive speed"],
-     "insurance": "State Farm Policy #SF-789456123"
-   }
- },
- "policy_coverage": {
-   "bodily_injury_per_person": 100000,
-   "bodily_injury_total": 300000,
-   "property_damage": 100000,
-   "medical_payments": 5000,
-   "uninsured_motorist": 100000,
-   "collision_deductible": 1000,
-   "comprehensive_deductible": 500
- },
- "incident_details": {
-   "weather": "clear",
-   "road_conditions": "dry",
-   "traffic_control": "traffic signal",
-   "speed_limit": 35,
-   "estimated_impact_speed": 55,
-   "point_of_impact": "driver side (T-bone)",
-   "airbag_deployment": true,
-   "emergency_response": {
-     "police": "responded",
-     "fire_department": "responded",
-     "ems": "3 transported to Mercy General Hospital"
-   }
- },
- "complexity_factors": [
-   "minor_involvement",
-   "facial_trauma_requiring_surgery", 
-   "elderly_claimants",
-   "unconscious_driver_at_scene",
-   "pre_existing_medical_conditions",
-   "high_speed_impact",
-   "multi_generational_family_dynamics",
-   "high_value_property_damage",
-   "clear_third_party_liability",
-   "potential_subrogation_opportunity"
- ],
- "ai_analysis": {
-   "complexity_score": 9.1,
-   "risk_level": "critical",
-   "traditional_reserve_estimate": 115000,
-   "ai_enhanced_reserve": 612500,
-   "confidence_level": 84,
-   "expected_timeline_months": "18-24",
-   "probability_factors": {
-     "multiple_reserve_increases": 91,
-     "legal_representation_90_days": 76,
-     "plastic_surgery_requirements": 88,
-     "cardiac_complications_elderly": 65,
-     "family_attorney_involvement": 82,
-     "subrogation_recovery_potential": 95
-   },
-   "historical_comparisons": [
-     {
-       "case_id": "2023-0892-445",
-       "description": "Minor facial trauma + elderly family",
-       "similarity_score": 94,
-       "final_payout": 890000,
-       "duration_months": 22
-     },
-     {
-       "case_id": "2024-0156-782", 
-       "description": "Unconscious elderly diabetic driver",
-       "similarity_score": 89,
-       "final_payout": 340000,
-       "duration_months": 16
-     },
-     {
-       "case_id": "2022-0734-291",
-       "description": "Facial scarring minor plastic surgery",
-       "similarity_score": 86,
-       "final_payout": 485000,
-       "duration_months": 19
-     }
-   ]
- },
- "processing_metadata": {
-   "created_timestamp": "2025-04-23T14:52:00Z",
-   "last_updated": "2025-04-23T15:15:00Z",
-   "processing_flags": [
-     "minor_consent_required",
-     "medical_authorization_needed", 
-     "specialist_routing_required",
-     "priority_handling"
-   ],
-   "next_actions": [
-     "obtain_minor_consent_forms",
-     "schedule_plastic_surgery_consultation",
-     "monitor_elderly_claimant_cardiac_status",
-     "document_scene_reconstruction"
-   ]
- }
+  "claim": {
+    "id": "2025-0423-187",
+    "type": "Motor Vehicle Accident - T-Bone Collision",
+    "date": "2025-04-23",
+    "time": "14:47",
+    "location": "Main St & 5th Ave intersection",
+    "status": "Active - AI Processing",
+    "adjuster": "Jennifer Torres",
+    "jurisdiction": "California"
+  },
+  "parties": {
+    "insured": {
+      "policy_holder": "Martinez Family",
+      "vehicle": {
+        "year": 2024,
+        "make": "Tesla",
+        "model": "Model S",
+        "vin": "5YJSA1E26MF123456",
+        "estimated_damage": 65000
+      },
+      "occupants": [
+        {
+          "name": "Roberto Martinez",
+          "age": 69,
+          "role": "driver",
+          "injuries": ["unconscious at scene", "chest trauma", "possible cardiac complications"],
+          "medical_history": ["Type 2 diabetes", "hypertension"],
+          "severity": "critical"
+        },
+        {
+          "name": "Maria Martinez",
+          "age": 67,
+          "role": "front passenger",
+          "injuries": ["neck pain", "back trauma", "disorientation"],
+          "medical_history": [],
+          "severity": "moderate"
+        },
+        {
+          "name": "Sofia Martinez",
+          "age": 8,
+          "role": "rear passenger",
+          "injuries": ["facial lacerations", "glass fragmentation wounds"],
+          "medical_history": [],
+          "severity": "high",
+          "special_considerations": ["minor", "plastic surgery required", "growth-related revision surgeries"]
+        }
+      ]
+    },
+    "third_party": {
+      "name": "Steve Johnson",
+      "age": 34,
+      "vehicle": {
+        "year": 2018,
+        "make": "Honda",
+        "model": "Civic",
+        "estimated_damage": 15000
+      },
+      "liability": "at_fault",
+      "violations": ["failure to obey traffic signal", "excessive speed"]
+    }
+  },
+  "policy_coverage": {
+    "bodily_injury_per_person": 100000,
+    "bodily_injury_total": 300000,
+    "property_damage": 100000,
+    "medical_payments": 5000
+  },
+  "incident_details": {
+    "weather": "clear",
+    "road_conditions": "dry",
+    "traffic_control": "traffic signal",
+    "speed_limit": 35,
+    "estimated_impact_speed": 55,
+    "point_of_impact": "driver side (T-bone)",
+    "airbag_deployment": true
+  },
+  "complexity_factors": [
+    "minor_involvement",
+    "facial_trauma_requiring_surgery", 
+    "elderly_claimants",
+    "unconscious_driver_at_scene",
+    "pre_existing_medical_conditions",
+    "high_speed_impact",
+    "multi_generational_family_dynamics",
+    "high_value_property_damage"
+  ],
+  "ai_analysis": {
+    "complexity_score": 9.1,
+    "risk_level": "critical",
+    "traditional_reserve_estimate": 115000,
+    "ai_enhanced_reserve": 612500,
+    "confidence_level": 84,
+    "expected_timeline_months": "18-24",
+    "probability_factors": {
+      "multiple_reserve_increases": 91,
+      "legal_representation_90_days": 76,
+      "plastic_surgery_requirements": 88,
+      "cardiac_complications_elderly": 65
+    }
+  }
 }

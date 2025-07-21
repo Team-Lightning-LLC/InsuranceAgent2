@@ -28,45 +28,106 @@
         </div>
     </header>
 
-    <!-- Main Layout -->
-    <div class="main-container">
-        <!-- Left Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <h3>Actions</h3>
-                <div class="action-item active">
-                    <span class="action-icon">📄</span>
-                    Activities (4)
+<!-- Left Sidebar - Redesigned for Clarity -->
+<aside class="sidebar">
+    <!-- Current Claim Section -->
+    <div class="sidebar-section">
+        <h3>📋 Current Claim</h3>
+        <div class="current-claim-card">
+            <div class="claim-header">
+                <span class="claim-number">2025-0423-187</span>
+                <span class="claim-status-badge processing">Processing</span>
+            </div>
+            <div class="claim-title">Martinez Family vs Steve</div>
+            <div class="claim-details">
+                <div class="claim-detail">📅 April 23, 2025</div>
+                <div class="claim-detail">🚗 T-Bone Collision</div>
+                <div class="claim-detail">👤 J. Torres (Adjuster)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documents Section -->
+    <div class="sidebar-section">
+        <h3>📄 Case Documents (4)</h3>
+        <div class="document-list">
+            <div class="document-item" data-doc="fnol">
+                <div class="doc-icon">📝</div>
+                <div class="doc-info">
+                    <div class="doc-name">FNOL Intake</div>
+                    <div class="doc-status" id="sidebar-fnol-status">Ready</div>
                 </div>
             </div>
-            
-            <div class="sidebar-section">
-                <h3>Claims (1)</h3>
-                <div class="claim-item active">
-                    <span class="claim-number">2025-0423-187</span>
-                    <span class="claim-status">Processing</span>
+            <div class="document-item" data-doc="police">
+                <div class="doc-icon">👮</div>
+                <div class="doc-info">
+                    <div class="doc-name">Police Report</div>
+                    <div class="doc-status" id="sidebar-police-status">Ready</div>
                 </div>
             </div>
-
-            <div class="sidebar-section">
-                <h3>Exposures (3)</h3>
-                <div class="exposure-item">Roberto Martinez - BI</div>
-                <div class="exposure-item">Maria Martinez - BI</div>
-                <div class="exposure-item">Sofia Martinez - BI</div>
+            <div class="document-item" data-doc="medical">
+                <div class="doc-icon">🏥</div>
+                <div class="doc-info">
+                    <div class="doc-name">Medical Records</div>
+                    <div class="doc-status" id="sidebar-medical-status">Ready</div>
+                </div>
             </div>
-
-            <div class="sidebar-section">
-                <h3>Subrogations (0)</h3>
+            <div class="document-item" data-doc="photos">
+                <div class="doc-icon">📸</div>
+                <div class="doc-info">
+                    <div class="doc-name">Damage Photos</div>
+                    <div class="doc-status" id="sidebar-photos-status">Ready</div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="sidebar-section">
-                <h3>Processing Queue</h3>
-                <div class="queue-item">Document Analysis</div>
-                <div class="queue-item">Pattern Matching</div>
-                <div class="queue-item">Reserve Setting</div>
+    <!-- Parties Involved -->
+    <div class="sidebar-section">
+        <h3>👥 Parties Involved (3)</h3>
+        <div class="parties-list">
+            <div class="party-item critical">
+                <span class="party-name">Roberto Martinez</span>
+                <span class="party-role">Driver (69) - Critical</span>
             </div>
-        </aside>
+            <div class="party-item moderate">
+                <span class="party-name">Maria Martinez</span>
+                <span class="party-role">Passenger (67) - Moderate</span>
+            </div>
+            <div class="party-item high">
+                <span class="party-name">Sofia Martinez</span>
+                <span class="party-role">Minor (8) - Facial Trauma</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- Processing Queue -->
+    <div class="sidebar-section">
+        <h3>⚙️ AI Processing Queue</h3>
+        <div class="queue-list">
+            <div class="queue-item" id="queue-part1">
+                <span class="queue-number">1</span>
+                <span class="queue-name">Document Analysis</span>
+                <span class="queue-status" id="queue-status-1">Pending</span>
+            </div>
+            <div class="queue-item" id="queue-part2">
+                <span class="queue-number">2</span>
+                <span class="queue-name">Routing</span>
+                <span class="queue-status" id="queue-status-2">Waiting</span>
+            </div>
+            <div class="queue-item" id="queue-part3">
+                <span class="queue-number">3</span>
+                <span class="queue-name">Pattern Analysis</span>
+                <span class="queue-status" id="queue-status-3">Waiting</span>
+            </div>
+            <div class="queue-item" id="queue-part4">
+                <span class="queue-number">4</span>
+                <span class="queue-name">Reserve Setting</span>
+                <span class="queue-status" id="queue-status-4">Waiting</span>
+            </div>
+        </div>
+    </div>
+</aside>
         <!-- Main Content Area -->
         <main class="content-area">
             <!-- Claim Header -->

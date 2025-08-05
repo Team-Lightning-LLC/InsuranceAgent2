@@ -1,6 +1,6 @@
 /**
- * AI Claims Processing Demo - Fully Integrated Enterprise System
- * Realistic database table with proper document processing
+ * AI Claims Processing Demo - Fully Working Enterprise System
+ * Fixed database table population and ribbon functionality
  */
 
 class EnterpriseClaimsDemo {
@@ -10,7 +10,7 @@ class EnterpriseClaimsDemo {
         this.currentResultCard = 0;
         this.resultCards = [];
         
-        // Realistic, consistent document data
+        // Realistic document data
         this.documents = [
             {
                 id: 'fnol',
@@ -19,7 +19,6 @@ class EnterpriseClaimsDemo {
                 status: 'Approved',
                 author: 'System Generated',
                 uploaded: '04/23/2025 2:47 PM',
-                insights: 'Multi-generational family involvement, elderly driver unconscious, minor with facial trauma requiring specialized handling protocols',
                 tags: ['Family dynamics', 'Age-related risks', 'Minor involvement', 'Specialized protocols']
             },
             {
@@ -29,7 +28,6 @@ class EnterpriseClaimsDemo {
                 status: 'Approved',
                 author: 'Officer J. Smith',
                 uploaded: '04/23/2025 4:15 PM',
-                insights: 'High-speed T-bone collision at intersection, clear third-party liability, DUI suspicion pending toxicology, extensive property damage assessment',
                 tags: ['Speed factor', 'Clear liability', 'Criminal element', 'Property damage']
             },
             {
@@ -39,7 +37,6 @@ class EnterpriseClaimsDemo {
                 status: 'Approved',
                 author: 'Dr. Sarah Chen, MD',
                 uploaded: '04/23/2025 6:22 PM',
-                insights: 'Unconscious elderly diabetic driver, minor facial lacerations requiring plastic surgery consultation, elderly passenger neck and back trauma',
                 tags: ['Diabetic complications', 'Surgical requirements', 'Growth concerns', 'Age factors']
             },
             {
@@ -49,31 +46,41 @@ class EnterpriseClaimsDemo {
                 status: 'Approved',
                 author: 'Adjuster K. Williams',
                 uploaded: '04/24/2025 9:30 AM',
-                insights: 'Tesla Model S extensive structural damage, glass fragmentation pattern consistent with high-speed impact, airbag deployment systems functioned properly',
                 tags: ['High repair costs', 'Impact analysis', 'Safety systems', 'Total loss likely']
             }
         ];
         
-        this.init();
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            this.init();
+        }
     }
 
     init() {
+        console.log('Initializing demo...');
         this.setupDatabase();
         this.bindEvents();
-    }
-
-    bindEvents() {
-        document.getElementById('btn-part1').addEventListener('click', () => this.runPart1());
-        document.getElementById('btn-part2').addEventListener('click', () => this.runPart2());
-        document.getElementById('btn-part3').addEventListener('click', () => this.runPart3());
-        document.getElementById('btn-part4').addEventListener('click', () => this.runPart4());
-        document.getElementById('resetDemo').addEventListener('click', () => this.resetDemo());
+        console.log('Demo initialized successfully');
     }
 
     setupDatabase() {
-        const tbody = document.getElementById('documentsTableBody');
+        console.log('Setting up database table...');
         
-        this.documents.forEach(doc => {
+        const tbody = document.getElementById('documentsTableBody');
+        if (!tbody) {
+            console.error('Table body not found!');
+            return;
+        }
+        
+        // Clear existing content
+        tbody.innerHTML = '';
+        
+        // Add each document row
+        this.documents.forEach((doc, index) => {
+            console.log(`Adding document ${index + 1}:`, doc.name);
+            
             const row = document.createElement('tr');
             row.id = `row-${doc.id}`;
             
@@ -104,65 +111,150 @@ class EnterpriseClaimsDemo {
             
             tbody.appendChild(row);
         });
+        
+        console.log(`Database setup complete - added ${this.documents.length} documents`);
+    }
+
+    bindEvents() {
+        console.log('Binding events...');
+        
+        // Get all buttons
+        const btn1 = document.getElementById('btn-part1');
+        const btn2 = document.getElementById('btn-part2');
+        const btn3 = document.getElementById('btn-part3');
+        const btn4 = document.getElementById('btn-part4');
+        const resetBtn = document.getElementById('resetDemo');
+        
+        // Bind Part 1 - Process Documents
+        if (btn1) {
+            btn1.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Process Documents clicked');
+                this.runPart1();
+            });
+            console.log('Part 1 button bound successfully');
+        } else {
+            console.error('btn-part1 not found!');
+        }
+        
+        // Bind Part 2 - Process Routing
+        if (btn2) {
+            btn2.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Process Routing clicked');
+                this.runPart2();
+            });
+        }
+        
+        // Bind Part 3 - Analyze Patterns
+        if (btn3) {
+            btn3.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Analyze Patterns clicked');
+                this.runPart3();
+            });
+        }
+        
+        // Bind Part 4 - Calculate Reserves
+        if (btn4) {
+            btn4.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Calculate Reserves clicked');
+                this.runPart4();
+            });
+        }
+        
+        // Bind Reset
+        if (resetBtn) {
+            resetBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Reset clicked');
+                this.resetDemo();
+            });
+        }
+        
+        console.log('All events bound successfully');
     }
 
     async runPart1() {
-        if (this.isProcessing) return;
+        console.log('Starting Part 1 - Document Processing');
+        
+        if (this.isProcessing) {
+            console.log('Already processing, ignoring click');
+            return;
+        }
         
         this.isProcessing = true;
         this.updateRibbonButton('btn-part1', 'processing', 'Processing...');
         
-        // Process documents sequentially with staggered start times
-        const processPromises = this.documents.map((doc, index) => 
-            this.processDocument(doc, index * 1000)
-        );
-        
-        // Wait for all documents to complete
-        await Promise.all(processPromises);
-        
-        await this.delay(500);
-        
-        // Create and show analysis card
-        this.createDocumentAnalysisCard();
-        
-        // Complete part 1
-        this.completePart(1);
-        this.enablePart(2);
-        
-        this.isProcessing = false;
+        try {
+            // Process each document sequentially
+            for (let i = 0; i < this.documents.length; i++) {
+                console.log(`Processing document ${i + 1}/${this.documents.length}`);
+                await this.processDocument(this.documents[i], i * 1000);
+            }
+            
+            // Wait a moment then show results
+            await this.delay(1000);
+            this.createDocumentAnalysisCard();
+            
+            // Complete part 1 and enable part 2
+            this.completePart(1);
+            this.enablePart(2);
+            
+            console.log('Part 1 completed successfully');
+            
+        } catch (error) {
+            console.error('Error in Part 1:', error);
+        } finally {
+            this.isProcessing = false;
+        }
     }
 
     async processDocument(doc, startDelay) {
         // Wait for staggered start
         await this.delay(startDelay);
         
+        console.log(`Processing document: ${doc.name}`);
+        
         const row = document.getElementById(`row-${doc.id}`);
         const statusIndicator = document.getElementById(`status-${doc.id}`);
         const tagsCell = document.getElementById(`tags-${doc.id}`);
         
-        // Start processing - show loading state
+        if (!row || !statusIndicator || !tagsCell) {
+            console.error(`Missing elements for document ${doc.id}`);
+            return;
+        }
+        
+        // Start processing visual feedback
         row.classList.add('processing');
         statusIndicator.className = 'status-indicator processing';
         statusIndicator.innerHTML = '↻';
         
-        // Simulate processing time (2-3 seconds)
-        await this.delay(2000 + Math.random() * 1000);
+        // Simulate processing time
+        await this.delay(2000);
         
-        // Complete processing - show AI tags
+        // Complete processing - show results
         row.classList.remove('processing');
         row.classList.add('complete');
         statusIndicator.className = 'status-indicator complete';
         statusIndicator.innerHTML = '✓';
         
-        // Populate AI tags
+        // Add AI tags
         const aiTagsContainer = tagsCell.querySelector('.ai-tags');
-        const tagsHTML = doc.tags.map(tag => 
-            `<span class="ai-tag high">${tag}</span>`
-        ).join('');
-        aiTagsContainer.innerHTML = tagsHTML;
+        if (aiTagsContainer) {
+            const tagsHTML = doc.tags.map(tag => 
+                `<span class="ai-tag high">${tag}</span>`
+            ).join('');
+            aiTagsContainer.innerHTML = tagsHTML;
+        }
+        
+        console.log(`Completed processing: ${doc.name}`);
     }
 
     async runPart2() {
+        console.log('Starting Part 2 - Routing');
+        
         if (this.isProcessing) return;
         
         this.isProcessing = true;
@@ -175,9 +267,12 @@ class EnterpriseClaimsDemo {
         this.enablePart(3);
         
         this.isProcessing = false;
+        console.log('Part 2 completed');
     }
 
     async runPart3() {
+        console.log('Starting Part 3 - Pattern Analysis');
+        
         if (this.isProcessing) return;
         
         this.isProcessing = true;
@@ -190,9 +285,12 @@ class EnterpriseClaimsDemo {
         this.enablePart(4);
         
         this.isProcessing = false;
+        console.log('Part 3 completed');
     }
 
     async runPart4() {
+        console.log('Starting Part 4 - Reserve Calculation');
+        
         if (this.isProcessing) return;
         
         this.isProcessing = true;
@@ -204,9 +302,13 @@ class EnterpriseClaimsDemo {
         this.completePart(4);
         
         // Show reset button
-        document.getElementById('resetDemo').style.display = 'flex';
+        const resetBtn = document.getElementById('resetDemo');
+        if (resetBtn) {
+            resetBtn.style.display = 'flex';
+        }
         
         this.isProcessing = false;
+        console.log('Part 4 completed - All processing finished!');
     }
 
     createDocumentAnalysisCard() {
@@ -521,6 +623,11 @@ class EnterpriseClaimsDemo {
 
     showResultCard(index) {
         const resultsArea = document.getElementById('resultsArea');
+        if (!resultsArea) {
+            console.error('Results area not found!');
+            return;
+        }
+        
         const card = this.resultCards[index];
         
         resultsArea.innerHTML = `
@@ -544,11 +651,15 @@ class EnterpriseClaimsDemo {
         const btn = document.getElementById(id);
         const statusElement = document.getElementById(id.replace('btn-', 'ribbon-status-'));
         
-        btn.className = `action-btn ${state}`;
-        statusElement.textContent = text;
+        if (btn) {
+            btn.className = `action-btn ${state}`;
+            if (state === 'processing') {
+                btn.disabled = true;
+            }
+        }
         
-        if (state === 'processing') {
-            btn.disabled = true;
+        if (statusElement) {
+            statusElement.textContent = text;
         }
     }
 
@@ -559,55 +670,76 @@ class EnterpriseClaimsDemo {
 
     enablePart(partNumber) {
         const btn = document.getElementById(`btn-part${partNumber}`);
-        btn.disabled = false;
+        if (btn) {
+            btn.disabled = false;
+        }
     }
 
     resetDemo() {
+        console.log('Resetting demo...');
+        
         this.isProcessing = false;
         this.completedParts = [];
         this.currentResultCard = 0;
         this.resultCards = [];
         
-        // Reset all ribbon buttons
+        // Reset ribbon buttons
         for (let i = 1; i <= 4; i++) {
             const btn = document.getElementById(`btn-part${i}`);
             const statusElement = document.getElementById(`ribbon-status-${i}`);
             
-            btn.className = i === 1 ? 'action-btn primary' : 'action-btn';
-            btn.disabled = i > 1;
+            if (btn) {
+                btn.className = i === 1 ? 'action-btn primary' : 'action-btn';
+                btn.disabled = i > 1;
+            }
             
-            // Reset button text
-            const texts = ['Ready', 'Waiting', 'Waiting', 'Waiting'];
-            statusElement.textContent = texts[i - 1];
+            if (statusElement) {
+                const texts = ['Ready', 'Waiting', 'Waiting', 'Waiting'];
+                statusElement.textContent = texts[i - 1];
+            }
         }
         
-        // Reset database table
+        // Reset document table
         this.documents.forEach(doc => {
             const row = document.getElementById(`row-${doc.id}`);
             const statusIndicator = document.getElementById(`status-${doc.id}`);
             const tagsCell = document.getElementById(`tags-${doc.id}`);
             
-            // Reset row
-            row.className = '';
-            statusIndicator.className = 'status-indicator pending';
-            statusIndicator.innerHTML = '';
+            if (row) {
+                row.className = '';
+            }
             
-            // Clear AI tags
-            const aiTagsContainer = tagsCell.querySelector('.ai-tags');
-            aiTagsContainer.innerHTML = '';
+            if (statusIndicator) {
+                statusIndicator.className = 'status-indicator pending';
+                statusIndicator.innerHTML = '';
+            }
+            
+            if (tagsCell) {
+                const aiTagsContainer = tagsCell.querySelector('.ai-tags');
+                if (aiTagsContainer) {
+                    aiTagsContainer.innerHTML = '';
+                }
+            }
         });
         
         // Reset results area
         const resultsArea = document.getElementById('resultsArea');
-        resultsArea.innerHTML = `
-            <div class="results-placeholder">
-                <div class="placeholder-text">AI Analysis Results</div>
-                <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
-            </div>
-        `;
+        if (resultsArea) {
+            resultsArea.innerHTML = `
+                <div class="results-placeholder">
+                    <div class="placeholder-text">AI Analysis Results</div>
+                    <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
+                </div>
+            `;
+        }
         
         // Hide reset button
-        document.getElementById('resetDemo').style.display = 'none';
+        const resetBtn = document.getElementById('resetDemo');
+        if (resetBtn) {
+            resetBtn.style.display = 'none';
+        }
+        
+        console.log('Demo reset complete');
     }
 
     delay(ms) {
@@ -615,8 +747,23 @@ class EnterpriseClaimsDemo {
     }
 }
 
-// Initialize demo
+// Initialize demo - create global variable for navigation
 let demo;
-document.addEventListener('DOMContentLoaded', () => {
+
+// Multiple initialization attempts to ensure it works
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        demo = new EnterpriseClaimsDemo();
+    });
+} else {
     demo = new EnterpriseClaimsDemo();
+}
+
+// Backup initialization
+window.addEventListener('load', () => {
+    if (!demo) {
+        demo = new EnterpriseClaimsDemo();
+    }
 });
+
+console.log('AI Claims Processing Demo script loaded');

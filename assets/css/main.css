@@ -255,8 +255,8 @@ body {
     background: var(--cc-gray-lightest);
     border: 1px solid var(--cc-border);
     border-radius: var(--cc-border-radius);
-    min-height: 600px;
-    max-height: 600px;
+    min-height: 500px;
+    max-height: 500px;
     padding: 24px;
     overflow: hidden;
     position: relative;

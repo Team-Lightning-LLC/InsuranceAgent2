@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <!-- Documents Only -->
+            <!-- Case Documents -->
             <div class="sidebar-section">
                 <h3 class="section-title">Case Documents (4)</h3>
                 <div class="document-list">
@@ -85,7 +85,7 @@
 
         <!-- Main Content -->
         <main class="cc-content">
-            <!-- Large Results Area -->
+            <!-- Large Results Area - 600px -->
             <div class="results-area" id="resultsArea">
                 <div class="results-placeholder">
                     <div class="placeholder-text">AI Analysis Results</div>
@@ -93,64 +93,59 @@
                 </div>
             </div>
 
-            <!-- Processing Sections -->
-            <div class="processing-sections">
-                <!-- Part 1: Document Processing -->
-                <section class="process-section" id="section-1">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>Part 1: Document Processing & Analysis</h2>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part1">Process Documents</button>
-                            <div class="section-status" id="status-1">Ready</div>
-                        </div>
-                    </div>
-                    <div class="section-content" id="content-1">
-                        <div class="document-grid" id="documentGrid">
-                            <!-- Small document cards will be populated here -->
-                        </div>
-                    </div>
-                </section>
+            <!-- Process Ribbon -->
+            <div class="process-ribbon">
+                <div class="ribbon-section">
+                    <button class="ribbon-btn" id="btn-part1">
+                        <div class="btn-title">Process Documents</div>
+                        <div class="btn-status" id="ribbon-status-1">Ready</div>
+                    </button>
+                </div>
+                <div class="ribbon-section">
+                    <button class="ribbon-btn" id="btn-part2" disabled>
+                        <div class="btn-title">Process Routing</div>
+                        <div class="btn-status" id="ribbon-status-2">Waiting</div>
+                    </button>
+                </div>
+                <div class="ribbon-section">
+                    <button class="ribbon-btn" id="btn-part3" disabled>
+                        <div class="btn-title">Analyze Patterns</div>
+                        <div class="btn-status" id="ribbon-status-3">Waiting</div>
+                    </button>
+                </div>
+                <div class="ribbon-section">
+                    <button class="ribbon-btn" id="btn-part4" disabled>
+                        <div class="btn-title">Calculate Reserves</div>
+                        <div class="btn-status" id="ribbon-status-4">Waiting</div>
+                    </button>
+                </div>
+            </div>
 
-                <!-- Part 2: Routing - Header Only -->
-                <section class="process-section" id="section-2">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>Part 2: Intelligent Routing</h2>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part2" disabled>Process Routing</button>
-                            <div class="section-status" id="status-2">Waiting</div>
-                        </div>
+            <!-- Enterprise Database Table -->
+            <div class="database-container">
+                <div class="database-header">
+                    <h3>Case Documents</h3>
+                    <div class="table-controls">
+                        <button class="table-btn">New Document</button>
+                        <button class="table-btn">Refresh</button>
                     </div>
-                </section>
-
-                <!-- Part 3: Pattern Analysis - Header Only -->
-                <section class="process-section" id="section-3">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>Part 3: Historical Pattern Analysis</h2>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part3" disabled>Analyze Patterns</button>
-                            <div class="section-status" id="status-3">Waiting</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Part 4: Reserve Intelligence - Header Only -->
-                <section class="process-section" id="section-4">
-                    <div class="section-header">
-                        <div class="section-info">
-                            <h2>Part 4: Reserve Intelligence</h2>
-                        </div>
-                        <div class="section-controls">
-                            <button class="process-btn" id="btn-part4" disabled>Calculate Reserves</button>
-                            <div class="section-status" id="status-4">Waiting</div>
-                        </div>
-                    </div>
-                </section>
+                </div>
+                
+                <table class="enterprise-database" id="documentsTable">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Name</th>
+                            <th>Document Type</th>
+                            <th>Author</th>
+                            <th>Uploaded</th>
+                            <th>AI Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody id="documentsTableBody">
+                        <!-- Document rows will be populated here -->
+                    </tbody>
+                </table>
             </div>
 
             <!-- Demo Controls -->

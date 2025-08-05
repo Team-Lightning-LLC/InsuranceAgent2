@@ -32,12 +32,12 @@
 
     <!-- Main Container -->
     <div class="cc-container">
-        <!-- Simplified Sidebar -->
+        <!-- Realistic Enterprise Sidebar -->
         <aside class="cc-sidebar">
             <!-- Current Claim -->
             <div class="sidebar-section">
                 <h3 class="section-title">Current Claim</h3>
-                <div class="claim-card">
+                <div class="claim-card active">
                     <div class="claim-header">
                         <span class="claim-number">2025-0423-187</span>
                         <span class="claim-badge processing">Processing</span>
@@ -51,41 +51,74 @@
                 </div>
             </div>
 
-            <!-- Case Documents -->
+            <!-- Enterprise Navigation -->
             <div class="sidebar-section">
-                <h3 class="section-title">Case Documents (4)</h3>
-                <div class="document-list">
-                    <div class="doc-item" data-doc="fnol">
-                        <div class="doc-details">
-                            <div class="doc-name">FNOL Intake</div>
-                            <div class="doc-status" id="sidebar-fnol">Ready</div>
-                        </div>
-                    </div>
-                    <div class="doc-item" data-doc="police">
-                        <div class="doc-details">
-                            <div class="doc-name">Police Report</div>
-                            <div class="doc-status" id="sidebar-police">Ready</div>
-                        </div>
-                    </div>
-                    <div class="doc-item" data-doc="medical">
-                        <div class="doc-details">
-                            <div class="doc-name">Medical Records</div>
-                            <div class="doc-status" id="sidebar-medical">Ready</div>
-                        </div>
-                    </div>
-                    <div class="doc-item" data-doc="photos">
-                        <div class="doc-details">
-                            <div class="doc-name">Damage Photos</div>
-                            <div class="doc-status" id="sidebar-photos">Ready</div>
-                        </div>
-                    </div>
+                <div class="nav-item">
+                    <div class="nav-icon">📅</div>
+                    <div class="nav-label">Timeline</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">📋</div>
+                    <div class="nav-label">Workplan</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">💰</div>
+                    <div class="nav-label">Loss Details</div>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">📄</div>
+                    <div class="nav-label">Documents</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">👥</div>
+                    <div class="nav-label">Exposures</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">🔄</div>
+                    <div class="nav-label">Subrogations</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">👤</div>
+                    <div class="nav-label">Parties Involved</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">🏥</div>
+                    <div class="nav-label">Medical</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">💳</div>
+                    <div class="nav-label">Financials</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-label">Analytics</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">📝</div>
+                    <div class="nav-label">Notes</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">⚡</div>
+                    <div class="nav-label">Activities</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">📞</div>
+                    <div class="nav-label">Communications</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">👨‍💼</div>
+                    <div class="nav-label">Vendors</div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">📋</div>
+                    <div class="nav-label">Policy</div>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="cc-content">
-            <!-- Large Results Area - 600px -->
+            <!-- Large Results Area -->
             <div class="results-area" id="resultsArea">
                 <div class="results-placeholder">
                     <div class="placeholder-text">AI Analysis Results</div>
@@ -93,64 +126,96 @@
                 </div>
             </div>
 
-            <!-- Process Ribbon -->
-            <div class="process-ribbon">
-                <div class="ribbon-section">
-                    <button class="ribbon-btn" id="btn-part1">
-                        <div class="btn-title">Process Documents</div>
-                        <div class="btn-status" id="ribbon-status-1">Ready</div>
+            <!-- Enterprise Action Ribbon -->
+            <div class="action-ribbon">
+                <div class="ribbon-group">
+                    <button class="action-btn primary" id="btn-part1">
+                        <div class="btn-icon">📄</div>
+                        <div class="btn-content">
+                            <div class="btn-title">Process Documents</div>
+                            <div class="btn-status" id="ribbon-status-1">Ready</div>
+                        </div>
                     </button>
                 </div>
-                <div class="ribbon-section">
-                    <button class="ribbon-btn" id="btn-part2" disabled>
-                        <div class="btn-title">Process Routing</div>
-                        <div class="btn-status" id="ribbon-status-2">Waiting</div>
+                <div class="ribbon-separator"></div>
+                <div class="ribbon-group">
+                    <button class="action-btn" id="btn-part2" disabled>
+                        <div class="btn-icon">👤</div>
+                        <div class="btn-content">
+                            <div class="btn-title">Process Routing</div>
+                            <div class="btn-status" id="ribbon-status-2">Waiting</div>
+                        </div>
                     </button>
                 </div>
-                <div class="ribbon-section">
-                    <button class="ribbon-btn" id="btn-part3" disabled>
-                        <div class="btn-title">Analyze Patterns</div>
-                        <div class="btn-status" id="ribbon-status-3">Waiting</div>
+                <div class="ribbon-separator"></div>
+                <div class="ribbon-group">
+                    <button class="action-btn" id="btn-part3" disabled>
+                        <div class="btn-icon">🔍</div>
+                        <div class="btn-content">
+                            <div class="btn-title">Analyze Patterns</div>
+                            <div class="btn-status" id="ribbon-status-3">Waiting</div>
+                        </div>
                     </button>
                 </div>
-                <div class="ribbon-section">
-                    <button class="ribbon-btn" id="btn-part4" disabled>
-                        <div class="btn-title">Calculate Reserves</div>
-                        <div class="btn-status" id="ribbon-status-4">Waiting</div>
+                <div class="ribbon-separator"></div>
+                <div class="ribbon-group">
+                    <button class="action-btn" id="btn-part4" disabled>
+                        <div class="btn-icon">💰</div>
+                        <div class="btn-content">
+                            <div class="btn-title">Calculate Reserves</div>
+                            <div class="btn-status" id="ribbon-status-4">Waiting</div>
+                        </div>
                     </button>
                 </div>
             </div>
 
-            <!-- Enterprise Database Table -->
-            <div class="database-container">
-                <div class="database-header">
-                    <h3>Case Documents</h3>
-                    <div class="table-controls">
-                        <button class="table-btn">New Document</button>
-                        <button class="table-btn">Refresh</button>
+            <!-- Enterprise Database Section -->
+            <div class="database-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h3>Case Documents</h3>
+                        <div class="section-subtitle">Document management and AI analysis</div>
+                    </div>
+                    <div class="section-actions">
+                        <button class="action-btn-small">
+                            <span class="btn-icon-small">📎</span>
+                            New Document
+                        </button>
+                        <button class="action-btn-small">
+                            <span class="btn-icon-small">🔄</span>
+                            Refresh
+                        </button>
                     </div>
                 </div>
-                
-                <table class="enterprise-database" id="documentsTable">
-                    <thead>
-                        <tr>
-                            <th>Status</th>
-                            <th>Name</th>
-                            <th>Document Type</th>
-                            <th>Author</th>
-                            <th>Uploaded</th>
-                            <th>AI Tags</th>
-                        </tr>
-                    </thead>
-                    <tbody id="documentsTableBody">
-                        <!-- Document rows will be populated here -->
-                    </tbody>
-                </table>
+
+                <!-- Enterprise Document Table -->
+                <div class="table-container">
+                    <table class="document-table" id="documentsTable">
+                        <thead>
+                            <tr>
+                                <th class="col-status">Status</th>
+                                <th class="col-name">Name</th>
+                                <th class="col-actions">Actions</th>
+                                <th class="col-type">Document Type</th>
+                                <th class="col-status-text">Status</th>
+                                <th class="col-author">Author</th>
+                                <th class="col-uploaded">Uploaded</th>
+                                <th class="col-ai-tags">AI Analysis Tags</th>
+                            </tr>
+                        </thead>
+                        <tbody id="documentsTableBody">
+                            <!-- Document rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Demo Controls -->
             <div class="demo-controls">
-                <button class="reset-btn" id="resetDemo" style="display:none;">Reset Demo</button>
+                <button class="reset-btn" id="resetDemo" style="display:none;">
+                    <span class="btn-icon-small">🔄</span>
+                    Reset Demo
+                </button>
             </div>
         </main>
     </div>

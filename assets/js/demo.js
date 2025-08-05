@@ -1,6 +1,6 @@
 /**
- * AI Claims Processing Demo - Clean Enterprise Style
- * Professional interface with large results area and compact processing
+ * AI Claims Processing Demo - Enterprise Database Interface
+ * Database table with ribbon controls and sequential AI tag population
  */
 
 class EnterpriseClaimsDemo {
@@ -13,80 +13,89 @@ class EnterpriseClaimsDemo {
         this.documents = [
             {
                 id: 'fnol',
-                title: 'FNOL Intake Form',
+                name: 'FNOL_Intake_Form_2025-04-23.pdf',
                 type: 'Initial Report',
-                insights: 'Multi-generational family, elderly driver unconscious, minor with facial trauma',
-                findings: ['Family dynamics', 'Age-related risks', 'Minor involvement', 'Specialized protocols']
+                author: 'System Auto-Generated',
+                uploaded: '04/23/2025 2:47 PM',
+                insights: 'Multi-generational family involvement, elderly driver unconscious, minor with facial trauma',
+                tags: ['Family dynamics', 'Age-related risks', 'Minor involvement', 'Specialized protocols']
             },
             {
                 id: 'police',
-                title: 'Police Incident Report',
+                name: 'Police_Incident_Report_PRD-445821.pdf',
                 type: 'Official Documentation',
+                author: 'Officer J. Smith',
+                uploaded: '04/23/2025 4:15 PM',
                 insights: 'High-speed T-bone collision, clear liability, DUI suspicion, extensive damage',
-                findings: ['Speed factor', 'Clear liability', 'Criminal element', 'Property damage']
+                tags: ['Speed factor', 'Clear liability', 'Criminal element', 'Property damage']
             },
             {
                 id: 'medical',
-                title: 'Medical Records',
+                name: 'Medical_Records_Emergency_Dept.pdf',
                 type: 'Treatment Documentation',
+                author: 'Dr. Sarah Chen',
+                uploaded: '04/23/2025 6:22 PM',
                 insights: 'Unconscious elderly diabetic, facial lacerations requiring surgery, trauma',
-                findings: ['Diabetic complications', 'Surgical requirements', 'Growth concerns', 'Age factors']
+                tags: ['Diabetic complications', 'Surgical requirements', 'Growth concerns', 'Age factors']
             },
             {
                 id: 'photos',
-                title: 'Damage Assessment Photos',
+                name: 'Damage_Assessment_Photos.zip',
                 type: 'Visual Evidence',
-                insights: 'Tesla Model S extensive damage, glass fragmentation, airbag deployment',
-                findings: ['High repair costs', 'Impact analysis', 'Safety systems', 'Total loss likely']
-            }
-        ];
-        
-        this.init();
-    }
+                author: 'Adjuster K. Williams',
+                uploaded: '04/24/2025 9:30 AM',
+               insights: 'Tesla Model S extensive damage, glass fragmentation, airbag deployment',
+               tags: ['High repair costs', 'Impact analysis', 'Safety systems', 'Total loss likely']
+           }
+       ];
+       
+       this.init();
+   }
 
-    init() {
-        this.setupDocuments();
-        this.bindEvents();
-    }
+   init() {
+       this.setupDatabase();
+       this.bindEvents();
+   }
 
-    bindEvents() {
-        document.getElementById('btn-part1').addEventListener('click', () => this.runPart1());
-        document.getElementById('btn-part2').addEventListener('click', () => this.runPart2());
-        document.getElementById('btn-part3').addEventListener('click', () => this.runPart3());
-        document.getElementById('btn-part4').addEventListener('click', () => this.runPart4());
-        document.getElementById('resetDemo').addEventListener('click', () => this.resetDemo());
-    }
+   bindEvents() {
+       document.getElementById('btn-part1').addEventListener('click', () => this.runPart1());
+       document.getElementById('btn-part2').addEventListener('click', () => this.runPart2());
+       document.getElementById('btn-part3').addEventListener('click', () => this.runPart3());
+       document.getElementById('btn-part4').addEventListener('click', () => this.runPart4());
+       document.getElementById('resetDemo').addEventListener('click', () => this.resetDemo());
+   }
 
-    setupDocuments() {
-        const grid = document.getElementById('documentGrid');
-        
-        this.documents.forEach(doc => {
-            const card = document.createElement('div');
-            card.className = 'document-card';
-            card.id = `doc-${doc.id}`;
-            
-            card.innerHTML = `
-                <div class="document-title">${doc.title}</div>
-                <div class="document-type">${doc.type}</div>
-                <div class="document-insights">${doc.insights}</div>
-                <div class="document-findings" id="findings-${doc.id}"></div>
-            `;
-            
-            grid.appendChild(card);
-        });
-    }
+   setupDatabase() {
+       const tbody = document.getElementById('documentsTableBody');
+       
+       this.documents.forEach(doc => {
+           const row = document.createElement('tr');
+           row.id = `row-${doc.id}`;
+           
+           row.innerHTML = `
+               <td>
+                   <div class="status-indicator pending" id="status-${doc.id}"></div>
+               </td>
+               <td><strong>${doc.name}</strong></td>
+               <td>${doc.type}</td>
+               <td>${doc.author}</td>
+               <td>${doc.uploaded}</td>
+               <td class="ai-tags-cell" id="tags-${doc.id}">
+                   <div class="ai-tags"></div>
+               </td>
+           `;
+           
+           tbody.appendChild(row);
+       });
+   }
 
-    async runPart1() {
-        if (this.isProcessing) return;
-        
-        this.isProcessing = true;
-        this.updateButton('btn-part1', 'processing', 'Processing...');
-        this.updateSectionStatus('section-1', 'active');
-        
-        // Show document grid
-        document.getElementById('content-1').classList.add('show');
-        
-// Process documents individually
+   async runPart1() {
+       if (this.isProcessing) return;
+       
+       this.isProcessing = true;
+       this.updateRibbonButton('btn-part1', 'processing', 'Processing...');
+       
+       // Process documents sequentially
        for (let i = 0; i < this.documents.length; i++) {
            await this.processDocument(this.documents[i], i * 800);
        }
@@ -103,29 +112,38 @@ class EnterpriseClaimsDemo {
        this.isProcessing = false;
    }
 
-   async processDocument(doc, delay) {
-       await this.delay(delay);
-       
-       const card = document.getElementById(`doc-${doc.id}`);
-       const findingsElement = document.getElementById(`findings-${doc.id}`);
+   async processDocument(doc) {
+       const row = document.getElementById(`row-${doc.id}`);
+       const statusIndicator = document.getElementById(`status-${doc.id}`);
+       const tagsCell = document.getElementById(`tags-${doc.id}`);
        const sidebarItem = document.querySelector(`[data-doc="${doc.id}"]`);
        const sidebarStatus = document.getElementById(`sidebar-${doc.id}`);
        
-       // Start processing
-       card.className = 'document-card processing';
+       // Start processing - show loading state
+       row.className = 'processing';
+       statusIndicator.className = 'status-indicator processing';
+       statusIndicator.innerHTML = '↻';
+       
+       // Update sidebar
        if (sidebarItem) sidebarItem.className = 'doc-item processing';
        if (sidebarStatus) sidebarStatus.textContent = 'Analyzing...';
        
-       await this.delay(1500);
+       // Simulate processing time
+       await this.delay(2000);
        
-       // Show findings
-       const findingsHTML = doc.findings.map(finding => 
-           `<span class="finding-tag high">${finding}</span>`
+       // Complete processing - show AI tags
+       row.className = 'complete';
+       statusIndicator.className = 'status-indicator complete';
+       statusIndicator.innerHTML = '✓';
+       
+       // Populate AI tags
+       const aiTagsContainer = tagsCell.querySelector('.ai-tags');
+       const tagsHTML = doc.tags.map(tag => 
+           `<span class="ai-tag high">${tag}</span>`
        ).join('');
-       findingsElement.innerHTML = findingsHTML;
+       aiTagsContainer.innerHTML = tagsHTML;
        
-       // Complete processing
-       card.className = 'document-card complete';
+       // Update sidebar
        if (sidebarItem) sidebarItem.className = 'doc-item complete';
        if (sidebarStatus) sidebarStatus.textContent = 'Complete';
    }
@@ -134,8 +152,7 @@ class EnterpriseClaimsDemo {
        if (this.isProcessing) return;
        
        this.isProcessing = true;
-       this.updateButton('btn-part2', 'processing', 'Processing...');
-       this.updateSectionStatus('section-2', 'active');
+       this.updateRibbonButton('btn-part2', 'processing', 'Processing...');
        
        await this.delay(2500);
        
@@ -150,8 +167,7 @@ class EnterpriseClaimsDemo {
        if (this.isProcessing) return;
        
        this.isProcessing = true;
-       this.updateButton('btn-part3', 'processing', 'Processing...');
-       this.updateSectionStatus('section-3', 'active');
+       this.updateRibbonButton('btn-part3', 'processing', 'Processing...');
        
        await this.delay(3500);
        
@@ -166,8 +182,7 @@ class EnterpriseClaimsDemo {
        if (this.isProcessing) return;
        
        this.isProcessing = true;
-       this.updateButton('btn-part4', 'processing', 'Processing...');
-       this.updateSectionStatus('section-4', 'active');
+       this.updateRibbonButton('btn-part4', 'processing', 'Processing...');
        
        await this.delay(3000);
        
@@ -362,7 +377,7 @@ class EnterpriseClaimsDemo {
                    </tbody>
                </table>
                
-               <table class="professional-table" style="margin-top: 20px;">
+               <table class="professional-table" style="margin-top: 16px;">
                    <thead>
                        <tr>
                            <th>Predictive Factor</th>
@@ -473,7 +488,7 @@ class EnterpriseClaimsDemo {
                    </tbody>
                </table>
                
-               <div style="background: var(--cc-off-white); padding: 16px; border-radius: var(--cc-border-radius); margin-top: 16px;">
+               <div style="background: var(--cc-off-white); padding: 12px; border-radius: var(--cc-border-radius); margin-top: 12px; font-size: var(--cc-font-size-xs);">
                    <strong>Key Intelligence:</strong> Traditional reserving would have created a $497,500 shortfall, requiring significant earnings adjustments. 
                    AI-enhanced analysis identified critical complexity factors early, preventing financial surprise while ensuring optimal care pathway for the Martinez family.
                    <br><br>
@@ -511,39 +526,21 @@ class EnterpriseClaimsDemo {
        this.currentResultCard = index;
    }
 
-   updateButton(id, state, text) {
+   updateRibbonButton(id, state, text) {
        const btn = document.getElementById(id);
-       btn.className = `process-btn ${state}`;
-       btn.textContent = text;
+       const statusElement = document.getElementById(id.replace('btn-', 'ribbon-status-'));
+       
+       btn.className = `ribbon-btn ${state}`;
+       statusElement.textContent = text;
        
        if (state === 'processing') {
            btn.disabled = true;
        }
    }
 
-   updateSectionStatus(sectionId, status) {
-       const section = document.getElementById(sectionId);
-       const statusElement = document.getElementById(sectionId.replace('section-', 'status-'));
-       
-       section.className = `process-section ${status}`;
-       statusElement.className = `section-status ${status}`;
-       
-       switch(status) {
-           case 'active':
-               statusElement.textContent = 'Processing...';
-               break;
-           case 'complete':
-               statusElement.textContent = 'Complete';
-               break;
-           default:
-               statusElement.textContent = 'Ready';
-       }
-   }
-
    completePart(partNumber) {
        this.completedParts.push(partNumber);
-       this.updateButton(`btn-part${partNumber}`, 'complete', 'Complete');
-       this.updateSectionStatus(`section-${partNumber}`, 'complete');
+       this.updateRibbonButton(`btn-part${partNumber}`, 'complete', 'Complete');
    }
 
    enablePart(partNumber) {
@@ -557,32 +554,37 @@ class EnterpriseClaimsDemo {
        this.currentResultCard = 0;
        this.resultCards = [];
        
-       // Reset all buttons
+       // Reset all ribbon buttons
        for (let i = 1; i <= 4; i++) {
            const btn = document.getElementById(`btn-part${i}`);
-           btn.className = 'process-btn';
+           const statusElement = document.getElementById(`ribbon-status-${i}`);
+           
+           btn.className = 'ribbon-btn';
            btn.disabled = i > 1;
            
            // Reset button text
-           const texts = ['Process Documents', 'Process Routing', 'Analyze Patterns', 'Calculate Reserves'];
-           btn.textContent = texts[i - 1];
-           
-           // Reset sections
-           this.updateSectionStatus(`section-${i}`, 'ready');
+           const texts = ['Ready', 'Waiting', 'Waiting', 'Waiting'];
+           statusElement.textContent = texts[i - 1];
        }
        
-       // Hide content area
-       document.getElementById('content-1').classList.remove('show');
-       
-       // Reset documents
+       // Reset database table
        this.documents.forEach(doc => {
-           const card = document.getElementById(`doc-${doc.id}`);
-           const findingsElement = document.getElementById(`findings-${doc.id}`);
+           const row = document.getElementById(`row-${doc.id}`);
+           const statusIndicator = document.getElementById(`status-${doc.id}`);
+           const tagsCell = document.getElementById(`tags-${doc.id}`);
            const sidebarItem = document.querySelector(`[data-doc="${doc.id}"]`);
            const sidebarStatus = document.getElementById(`sidebar-${doc.id}`);
            
-           card.className = 'document-card';
-           findingsElement.innerHTML = '';
+           // Reset row
+           row.className = '';
+           statusIndicator.className = 'status-indicator pending';
+           statusIndicator.innerHTML = '';
+           
+           // Clear AI tags
+           const aiTagsContainer = tagsCell.querySelector('.ai-tags');
+           aiTagsContainer.innerHTML = '';
+           
+           // Reset sidebar
            if (sidebarItem) sidebarItem.className = 'doc-item';
            if (sidebarStatus) sidebarStatus.textContent = 'Ready';
        });

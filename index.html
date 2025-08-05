@@ -12,7 +12,6 @@
     <header class="cc-header">
         <div class="cc-nav-left">
             <div class="cc-logo">
-                <span class="logo-icon">G</span>
                 <span class="logo-text">ClaimCenter™</span>
             </div>
             <nav class="cc-tabs">
@@ -33,7 +32,7 @@
 
     <!-- Main Container -->
     <div class="cc-container">
-        <!-- Enhanced Sidebar -->
+        <!-- Simplified Sidebar -->
         <aside class="cc-sidebar">
             <!-- Current Claim -->
             <div class="sidebar-section">
@@ -52,134 +51,106 @@
                 </div>
             </div>
 
-            <!-- Enhanced Document List -->
+            <!-- Documents Only -->
             <div class="sidebar-section">
                 <h3 class="section-title">Case Documents (4)</h3>
                 <div class="document-list">
-                    <div class="doc-item clickable" data-doc="fnol" id="file-fnol">
-                        <div class="doc-icon">📋</div>
+                    <div class="doc-item" data-doc="fnol">
                         <div class="doc-details">
-                            <div class="doc-name">Martinez_FNOL_Intake.pdf</div>
-                            <div class="doc-meta">Initial Report • 2.3 MB</div>
-                            <div class="doc-status" id="status-fnol">Ready</div>
+                            <div class="doc-name">FNOL Intake</div>
+                            <div class="doc-status" id="sidebar-fnol">Ready</div>
                         </div>
-                        <div class="doc-indicator" id="indicator-fnol"></div>
                     </div>
-                    <div class="doc-item clickable" data-doc="police" id="file-police">
-                        <div class="doc-icon">🚔</div>
+                    <div class="doc-item" data-doc="police">
                         <div class="doc-details">
-                            <div class="doc-name">Martinez_Police_Report.pdf</div>
-                            <div class="doc-meta">Official Documentation • 15.7 MB</div>
-                            <div class="doc-status" id="status-police">Ready</div>
+                            <div class="doc-name">Police Report</div>
+                            <div class="doc-status" id="sidebar-police">Ready</div>
                         </div>
-                        <div class="doc-indicator" id="indicator-police"></div>
                     </div>
-                    <div class="doc-item clickable" data-doc="medical" id="file-medical">
-                        <div class="doc-icon">🏥</div>
+                    <div class="doc-item" data-doc="medical">
                         <div class="doc-details">
-                            <div class="doc-name">Martinez_Medical_Records.pdf</div>
-                            <div class="doc-meta">Treatment Documentation • 8.9 MB</div>
-                            <div class="doc-status" id="status-medical">Ready</div>
+                            <div class="doc-name">Medical Records</div>
+                            <div class="doc-status" id="sidebar-medical">Ready</div>
                         </div>
-                        <div class="doc-indicator" id="indicator-medical"></div>
                     </div>
-                    <div class="doc-item clickable" data-doc="photos" id="file-photos">
-                        <div class="doc-icon">📷</div>
+                    <div class="doc-item" data-doc="photos">
                         <div class="doc-details">
-                            <div class="doc-name">Martinez_Damage_Photos.zip</div>
-                            <div class="doc-meta">Visual Evidence • 45.2 MB</div>
-                            <div class="doc-status" id="status-photos">Ready</div>
+                            <div class="doc-name">Damage Photos</div>
+                            <div class="doc-status" id="sidebar-photos">Ready</div>
                         </div>
-                        <div class="doc-indicator" id="indicator-photos"></div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Processing Controls (Moved from main area) -->
-            <div class="sidebar-section">
-                <h3 class="section-title">AI Processing</h3>
-                <div class="processing-controls">
-                    <button class="process-btn" id="btn-part1">
-                        <span class="btn-icon">📄</span>
-                        <span class="btn-text">Process Documents</span>
-                        <span class="btn-status" id="btn-status-1">Ready</span>
-                    </button>
-                    <button class="process-btn" id="btn-part2" disabled>
-                        <span class="btn-icon">🎯</span>
-                        <span class="btn-text">Process Routing</span>
-                        <span class="btn-status" id="btn-status-2">Waiting</span>
-                    </button>
-                    <button class="process-btn" id="btn-part3" disabled>
-                        <span class="btn-icon">📊</span>
-                        <span class="btn-text">Analyze Patterns</span>
-                        <span class="btn-status" id="btn-status-3">Waiting</span>
-                    </button>
-                    <button class="process-btn" id="btn-part4" disabled>
-                        <span class="btn-icon">💰</span>
-                        <span class="btn-text">Calculate Reserves</span>
-                        <span class="btn-status" id="btn-status-4">Waiting</span>
-                    </button>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="cc-content">
-            <!-- Large AI Results Area -->
-            <div class="ai-results-section">
-                <div class="results-header">
-                    <h2 class="results-title">AI Analysis Results</h2>
-                    <div class="results-navigation" id="resultsNavigation" style="display: none;">
-                        <button class="nav-btn" id="prevResult">← Previous</button>
-                        <div class="result-tabs" id="resultTabs"></div>
-                        <button class="nav-btn" id="nextResult">Next →</button>
-                    </div>
-                </div>
-                <div class="results-display" id="resultsDisplay">
-                    <div class="results-placeholder">
-                        <div class="placeholder-icon">🤖</div>
-                        <div class="placeholder-text">AI Analysis Ready</div>
-                        <div class="placeholder-sub">Click "Process Documents" to begin intelligent analysis</div>
-                    </div>
+            <!-- Large Results Area -->
+            <div class="results-area" id="resultsArea">
+                <div class="results-placeholder">
+                    <div class="placeholder-text">AI Analysis Results</div>
+                    <div class="placeholder-sub">Click "Process Documents" to begin analysis</div>
                 </div>
             </div>
 
-            <!-- ClaimCenter-style Data Tables -->
-            <div class="data-tables-section">
-                <div class="table-tabs">
-                    <button class="table-tab active">Summary</button>
-                    <button class="table-tab">Exposures</button>
-                    <button class="table-tab">Services</button>
-                    <button class="table-tab">Activities</button>
-                </div>
-                <div class="table-content">
-                    <div class="table-row">
-                        <div class="table-section">
-                            <h4>Basics</h4>
-                            <div class="table-item">
-                                <span class="item-label">Open</span>
-                                <span class="item-value">0 days</span>
-                            </div>
+            <!-- Processing Sections -->
+            <div class="processing-sections">
+                <!-- Part 1: Document Processing -->
+                <section class="process-section" id="section-1">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 1: Document Processing & Analysis</h2>
                         </div>
-                        <div class="table-section">
-                            <h4>Financials</h4>
-                            <div class="table-item">
-                                <span class="item-label">Gross Incurred</span>
-                                <span class="item-value">$0.00</span>
-                            </div>
-                            <div class="table-item">
-                                <span class="item-label">Paid</span>
-                                <span class="item-value">$0.00</span>
-                            </div>
-                        </div>
-                        <div class="table-section">
-                            <h4>High-Risk Indicators</h4>
-                            <div class="table-item">
-                                <span class="item-value">AI Processing Required</span>
-                            </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part1">Process Documents</button>
+                            <div class="section-status" id="status-1">Ready</div>
                         </div>
                     </div>
-                </div>
+                    <div class="section-content" id="content-1">
+                        <div class="document-grid" id="documentGrid">
+                            <!-- Small document cards will be populated here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Part 2: Routing - Header Only -->
+                <section class="process-section" id="section-2">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 2: Intelligent Routing</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part2" disabled>Process Routing</button>
+                            <div class="section-status" id="status-2">Waiting</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Part 3: Pattern Analysis - Header Only -->
+                <section class="process-section" id="section-3">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 3: Historical Pattern Analysis</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part3" disabled>Analyze Patterns</button>
+                            <div class="section-status" id="status-3">Waiting</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Part 4: Reserve Intelligence - Header Only -->
+                <section class="process-section" id="section-4">
+                    <div class="section-header">
+                        <div class="section-info">
+                            <h2>Part 4: Reserve Intelligence</h2>
+                        </div>
+                        <div class="section-controls">
+                            <button class="process-btn" id="btn-part4" disabled>Calculate Reserves</button>
+                            <div class="section-status" id="status-4">Waiting</div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <!-- Demo Controls -->

@@ -1033,3 +1033,124 @@ body {
     display: inline-block;
     animation: rotate 1s linear infinite;
 }
+/* Pattern Analysis Loading Animation */
+.pattern-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.pattern-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pattern-content {
+    background: var(--cc-white);
+    border-radius: var(--cc-border-radius);
+    padding: 40px;
+    max-width: 520px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.pattern-title {
+    font-size: var(--cc-font-size-xl);
+    font-weight: 600;
+    color: var(--cc-navy-dark);
+    margin-bottom: 30px;
+}
+
+.pattern-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pattern-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: var(--cc-border-radius);
+    background: var(--cc-off-white);
+    transition: all 0.3s ease;
+    opacity: 0.3;
+}
+
+.pattern-step.active {
+    opacity: 1;
+    background: rgba(111, 66, 193, 0.1);
+    border-left: 4px solid var(--cc-processing);
+}
+
+.pattern-step.complete {
+    opacity: 1;
+    background: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--cc-success);
+}
+
+.pattern-step .step-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    background: var(--cc-gray-lighter);
+    color: var(--cc-gray-medium);
+    flex-shrink: 0;
+}
+
+.pattern-step.active .step-icon {
+    background: var(--cc-processing);
+    color: var(--cc-white);
+    animation: pulse 1.5s infinite;
+}
+
+.pattern-step.complete .step-icon {
+    background: var(--cc-success);
+    color: var(--cc-white);
+}
+
+.pattern-step .step-text {
+    font-size: var(--cc-font-size-base);
+    font-weight: 500;
+    color: var(--cc-navy-dark);
+    text-align: left;
+}
+
+.pattern-step.active .step-text {
+    font-weight: 600;
+}
+
+.pattern-progress {
+    margin-top: 30px;
+    height: 4px;
+    background: var(--cc-gray-lightest);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pattern-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cc-processing), var(--cc-info));
+    width: 0%;
+    transition: width 0.8s ease;
+    border-radius: 2px;
+}

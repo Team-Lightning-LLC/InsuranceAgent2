@@ -253,22 +253,78 @@ class EnterpriseClaimsDemo {
     }
 
     async runPart2() {
-        console.log('Starting Part 2 - Routing');
+    console.log('Starting Part 2 - Routing');
+    
+    if (this.isProcessing) return;
+    
+    this.isProcessing = true;
+    this.updateRibbonButton('btn-part2', 'processing', 'Processing...');
+    
+    // Show routing animation
+    await this.showRoutingAnimation();
+    
+    this.createRoutingCard();
+    this.completePart(2);
+    this.enablePart(3);
+    
+    this.isProcessing = false;
+    console.log('Part 2 completed');
+}
+
+async showRoutingAnimation() {
+    const modal = document.getElementById('routingModal');
+    const progressBar = document.getElementById('routingProgressBar');
+    
+    // Show modal
+    modal.classList.add('active');
+    
+    const steps = [
+        { id: 'step1', duration: 1200, text: 'Analyzing case complexity...' },
+        { id: 'step2', duration: 1000, text: 'Scanning adjuster database...' },
+        { id: 'step3', duration: 800, text: 'Calculating match scores...' },
+        { id: 'step4', duration: 1000, text: 'Finalizing assignment...' }
+    ];
+    
+    let totalProgress = 0;
+    const progressIncrement = 100 / steps.length;
+    
+    for (let i = 0; i < steps.length; i++) {
+        const step = steps[i];
+        const stepElement = document.getElementById(step.id);
         
-        if (this.isProcessing) return;
+        // Activate current step
+        stepElement.classList.add('active');
         
-        this.isProcessing = true;
-        this.updateRibbonButton('btn-part2', 'processing', 'Processing...');
+        // Update progress bar
+        totalProgress += progressIncrement;
+        progressBar.style.width = totalProgress + '%';
         
-        await this.delay(2500);
+        // Wait for step duration
+        await this.delay(step.duration);
         
-        this.createRoutingCard();
-        this.completePart(2);
-        this.enablePart(3);
-        
-        this.isProcessing = false;
-        console.log('Part 2 completed');
+        // Mark as complete
+        stepElement.classList.remove('active');
+        stepElement.classList.add('complete');
+        stepElement.querySelector('.step-icon').innerHTML = '✓';
     }
+    
+    // Final progress completion
+    progressBar.style.width = '100%';
+    
+    // Wait a moment then hide modal
+    await this.delay(800);
+    modal.classList.remove('active');
+    
+    // Reset modal for next use
+    setTimeout(() => {
+        steps.forEach(step => {
+            const stepElement = document.getElementById(step.id);
+            stepElement.classList.remove('active', 'complete');
+            stepElement.querySelector('.step-icon').innerHTML = stepElement.querySelector('.step-icon').textContent.replace('✓', '1234'[steps.indexOf(step)]);
+        });
+        progressBar.style.width = '0%';
+    }, 300);
+}
 
     async runPart3() {
         console.log('Starting Part 3 - Pattern Analysis');

@@ -279,10 +279,10 @@ async showRoutingAnimation() {
     modal.classList.add('active');
     
     const steps = [
-        { id: 'step1', duration: 1200, text: 'Analyzing case complexity...' },
-        { id: 'step2', duration: 1000, text: 'Scanning adjuster database...' },
-        { id: 'step3', duration: 800, text: 'Calculating match scores...' },
-        { id: 'step4', duration: 1000, text: 'Finalizing assignment...' }
+        { id: 'step1', duration: 3000, text: 'Analyzing case complexity...' },
+        { id: 'step2', duration: 3000, text: 'Scanning adjuster database...' },
+        { id: 'step3', duration: 3000, text: 'Calculating match scores...' },
+        { id: 'step4', duration: 3000, text: 'Finalizing assignment...' }
     ];
     
     let totalProgress = 0;

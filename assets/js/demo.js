@@ -326,23 +326,80 @@ async showRoutingAnimation() {
     }, 300);
 }
 
-    async runPart3() {
-        console.log('Starting Part 3 - Pattern Analysis');
+   async runPart3() {
+    console.log('Starting Part 3 - Pattern Analysis');
+    
+    if (this.isProcessing) return;
+    
+    this.isProcessing = true;
+    this.updateRibbonButton('btn-part3', 'processing', 'Processing...');
+    
+    // Show pattern analysis animation
+    await this.showPatternAnalysisAnimation();
+    
+    this.createPatternAnalysisCard();
+    this.completePart(3);
+    this.enablePart(4);
+    
+    this.isProcessing = false;
+    console.log('Part 3 completed');
+}
+
+async showPatternAnalysisAnimation() {
+    const modal = document.getElementById('patternModal');
+    const progressBar = document.getElementById('patternProgressBar');
+    
+    // Show modal
+    modal.classList.add('active');
+    
+    const steps = [
+        { id: 'pattern-step1', duration: 2000, text: 'Scanning case database...' },
+        { id: 'pattern-step2', duration: 2000, text: 'Finding similar circumstances...' },
+        { id: 'pattern-step3', duration: 2000, text: 'Processing trend data...' },
+        { id: 'pattern-step4', duration: 2000, text: 'Calculating reserve patterns...' },
+        { id: 'pattern-step5', duration: 2000, text: 'Finalizing predictions...' }
+    ];
+    
+    let totalProgress = 0;
+    const progressIncrement = 100 / steps.length;
+    
+    for (let i = 0; i < steps.length; i++) {
+        const step = steps[i];
+        const stepElement = document.getElementById(step.id);
         
-        if (this.isProcessing) return;
+        // Activate current step
+        stepElement.classList.add('active');
         
-        this.isProcessing = true;
-        this.updateRibbonButton('btn-part3', 'processing', 'Processing...');
+        // Update progress bar
+        totalProgress += progressIncrement;
+        progressBar.style.width = totalProgress + '%';
         
-        await this.delay(3500);
+        // Wait for step duration
+        await this.delay(step.duration);
         
-        this.createPatternAnalysisCard();
-        this.completePart(3);
-        this.enablePart(4);
-        
-        this.isProcessing = false;
-        console.log('Part 3 completed');
+        // Mark as complete
+        stepElement.classList.remove('active');
+        stepElement.classList.add('complete');
+        stepElement.querySelector('.step-icon').innerHTML = '✓';
     }
+    
+    // Final progress completion
+    progressBar.style.width = '100%';
+    
+    // Wait a moment then hide modal
+    await this.delay(800);
+    modal.classList.remove('active');
+    
+    // Reset modal for next use
+    setTimeout(() => {
+        steps.forEach((step, index) => {
+            const stepElement = document.getElementById(step.id);
+            stepElement.classList.remove('active', 'complete');
+            stepElement.querySelector('.step-icon').innerHTML = (index + 1).toString();
+        });
+        progressBar.style.width = '0%';
+    }, 300);
+}
 
     async runPart4() {
         console.log('Starting Part 4 - Reserve Calculation');

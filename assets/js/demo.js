@@ -644,91 +644,165 @@ async showPatternAnalysisAnimation() {
     }
 
     createReserveAnalysisCard() {
-        const card = {
-            id: 'reserves',
-            title: 'Reserve Intelligence Analysis Complete',
-            content: `
-                <div class="analysis-grid">
-                    <div class="analysis-item">
-                        <div class="analysis-label">Traditional Method</div>
-                        <div class="analysis-value critical">$115,000</div>
-                    </div>
-                    <div class="analysis-item">
-                        <div class="analysis-label">AI-Enhanced Reserve</div>
-                        <div class="analysis-value success">$612,500</div>
-                    </div>
-                    <div class="analysis-item">
-                        <div class="analysis-label">Accuracy Improvement</div>
-                        <div class="analysis-value success">432%</div>
-                    </div>
-                    <div class="analysis-item">
-                        <div class="analysis-label">Confidence Level</div>
-                        <div class="analysis-value">84%</div>
+    const card = {
+        id: 'reserves',
+        title: 'Reserve Intelligence Analysis: AI vs Traditional Methods',
+        content: `
+            <div class="analysis-grid">
+                <div class="analysis-item">
+                    <div class="analysis-label">Traditional Method</div>
+                    <div class="analysis-value critical">$285,000</div>
+                </div>
+                <div class="analysis-item">
+                    <div class="analysis-label">AI-Enhanced Reserve</div>
+                    <div class="analysis-value success">$612,500</div>
+                </div>
+                <div class="analysis-item">
+                    <div class="analysis-label">Predictive Advantage</div>
+                    <div class="analysis-value success">115% Higher</div>
+                </div>
+                <div class="analysis-item">
+                    <div class="analysis-label">Adjustment Prevention</div>
+                    <div class="analysis-value success">$327,500</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                <div style="background: rgba(220, 53, 69, 0.05); border: 1px solid rgba(220, 53, 69, 0.2); border-radius: var(--cc-border-radius); padding: 16px;">
+                    <h4 style="color: var(--cc-danger); margin-bottom: 12px; font-size: var(--cc-font-size-base);">Traditional Human Analysis</h4>
+                    <div style="font-size: var(--cc-font-size-sm); margin-bottom: 12px;"><strong>Initial Reserve: $285,000</strong></div>
+                    <div style="font-size: var(--cc-font-size-xs); line-height: 1.4;">
+                        <strong>Methodology:</strong><br>
+                        • Based on documented injuries ($155,500)<br>
+                        • Property damage assessment ($45,000)<br>
+                        • Conservative pain & suffering multiplier (1.8x)<br>
+                        • Standard legal/administrative buffer ($15,000)<br><br>
+                        <strong>Approach:</strong> Incremental adjustment philosophy - start conservative, adjust upward as complications emerge
                     </div>
                 </div>
                 
-                <table class="professional-table">
-                    <thead>
-                        <tr>
-                            <th>Claimant</th>
-                            <th>Base Assessment</th>
-                            <th>Complexity Multiplier</th>
-                            <th>Adjusted Reserve</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Roberto Martinez (69)</strong></td>
-                            <td>$30,000</td>
-                            <td>2.8x (elderly/unconscious/diabetic)</td>
-                            <td><strong>$84,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Maria Martinez (67)</strong></td>
-                            <td>$15,000</td>
-                            <td>1.9x (elderly trauma)</td>
-                            <td><strong>$28,500</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Sofia Martinez (8)</strong></td>
-                            <td>$25,000</td>
-                            <td>6.2x (facial trauma/growth factor)</td>
-                            <td><strong>$155,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Future surgical procedures</strong></td>
-                            <td colspan="2">Revision surgeries through age 18</td>
-                            <td><strong>$95,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Pain & suffering</strong></td>
-                            <td colspan="2">Family unit trauma multiplier</td>
-                            <td><strong>$180,000</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Legal & administrative costs</strong></td>
-                            <td colspan="2">Expected attorney involvement</td>
-                            <td><strong>$70,000</strong></td>
-                        </tr>
-                        <tr style="background: rgba(40, 167, 69, 0.1); font-weight: 600;">
-                            <td><strong>TOTAL AI-ENHANCED RESERVE</strong></td>
-                            <td colspan="3"><strong>$612,500</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div style="background: var(--cc-off-white); padding: 12px; border-radius: var(--cc-border-radius); margin-top: 12px; font-size: var(--cc-font-size-xs);">
-                    <strong>Key Intelligence:</strong> Traditional reserving would have created a $497,500 shortfall, requiring significant earnings adjustments. 
-                    AI-enhanced analysis identified critical complexity factors early, preventing financial surprise while ensuring optimal care pathway for the Martinez family.
-                    <br><br>
-                    <strong>Monitoring Triggers:</strong> Automatic reserve reviews scheduled for days 7, 21, 45, 90, and 180.
+                <div style="background: rgba(40, 167, 69, 0.05); border: 1px solid rgba(40, 167, 69, 0.2); border-radius: var(--cc-border-radius); padding: 16px;">
+                    <h4 style="color: var(--cc-success); margin-bottom: 12px; font-size: var(--cc-font-size-base);">AI-Enhanced Predictive Analysis</h4>
+                    <div style="font-size: var(--cc-font-size-sm); margin-bottom: 12px;"><strong>Initial Reserve: $612,500</strong></div>
+                    <div style="font-size: var(--cc-font-size-xs); line-height: 1.4;">
+                        <strong>Methodology:</strong><br>
+                        • Pattern analysis of 47 similar cases<br>
+                        • Family unit complexity multipliers (2.1x)<br>
+                        • Age-related complication factors<br>
+                        • Predictive modeling for future surgeries<br><br>
+                        <strong>Approach:</strong> Front-load reserve based on probable case evolution to prevent surprise adjustments
+                    </div>
                 </div>
-            `
-        };
-        
-        this.addResultCard(card);
-    }
-
+            </div>
+            
+            <table class="professional-table">
+                <thead>
+                    <tr>
+                        <th>Reserve Component</th>
+                        <th>Traditional Approach</th>
+                        <th>AI-Enhanced Approach</th>
+                        <th>Rationale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Roberto Martinez (69)</strong></td>
+                        <td>$45,000</td>
+                        <td><strong>$84,000</strong></td>
+                        <td>AI accounts for diabetic complications and cardiac monitoring needs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maria Martinez (67)</strong></td>
+                        <td>$25,000</td>
+                        <td><strong>$28,500</strong></td>
+                        <td>Age-related recovery timeline and potential complications</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sofia Martinez (8)</strong></td>
+                        <td>$35,000</td>
+                        <td><strong>$155,000</strong></td>
+                        <td>Growth-factor surgeries through age 18 based on facial trauma patterns</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Future medical procedures</strong></td>
+                        <td>$15,000</td>
+                        <td><strong>$95,000</strong></td>
+                        <td>Predictive modeling shows 88% probability of revision surgeries</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pain & suffering</strong></td>
+                        <td>$125,000</td>
+                        <td><strong>$180,000</strong></td>
+                        <td>Family unit trauma multiplier based on multi-generational impact</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal & administrative</strong></td>
+                        <td>$40,000</td>
+                        <td><strong>$70,000</strong></td>
+                        <td>76% probability of attorney representation within 90 days</td>
+                    </tr>
+                    <tr style="border-top: 2px solid var(--cc-border); background: rgba(0, 123, 255, 0.05);">
+                        <td><strong>TOTAL INITIAL RESERVE</strong></td>
+                        <td><strong>$285,000</strong></td>
+                        <td><strong>$612,500</strong></td>
+                        <td><strong>Difference: $327,500</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="professional-table" style="margin-top: 16px;">
+                <thead>
+                    <tr>
+                        <th>Predicted Case Evolution</th>
+                        <th>Traditional Impact</th>
+                        <th>AI-Enhanced Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Month 2: Sofia requires plastic surgery consultation</td>
+                        <td style="color: var(--cc-danger);">Reserve increase: +$45,000</td>
+                        <td style="color: var(--cc-success);">Already accounted for</td>
+                    </tr>
+                    <tr>
+                        <td>Month 4: Roberto develops cardiac complications</td>
+                        <td style="color: var(--cc-danger);">Reserve increase: +$65,000</td>
+                        <td style="color: var(--cc-success);">Already accounted for</td>
+                    </tr>
+                    <tr>
+                        <td>Month 6: Family retains attorney</td>
+                        <td style="color: var(--cc-danger);">Reserve increase: +$40,000</td>
+                        <td style="color: var(--cc-success);">Already accounted for</td>
+                    </tr>
+                    <tr>
+                        <td>Month 12: Additional surgery requirements identified</td>
+                        <td style="color: var(--cc-danger);">Reserve increase: +$75,000</td>
+                        <td style="color: var(--cc-success);">Already accounted for</td>
+                    </tr>
+                    <tr style="background: rgba(40, 167, 69, 0.1); font-weight: 600;">
+                        <td><strong>Total Traditional Adjustments</strong></td>
+                        <td style="color: var(--cc-danger);"><strong>+$225,000</strong></td>
+                        <td style="color: var(--cc-success);"><strong>$0 (Prevented)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="background: var(--cc-off-white); padding: 16px; border-radius: var(--cc-border-radius); margin-top: 16px; font-size: var(--cc-font-size-sm);">
+                <strong>Key Intelligence:</strong> While traditional reserving starts with a reasonable $285,000 based on documented damages, 
+                it fails to anticipate the complex cascade of complications typical in multi-generational family trauma cases. The AI-enhanced 
+                approach prevents $327,500 in surprise reserve adjustments by front-loading reserves based on predictive pattern analysis.
+                <br><br>
+                <strong>Business Impact:</strong> Eliminates quarterly earnings surprises, improves financial forecasting accuracy, 
+                and ensures optimal medical care pathway without budget constraints.
+                <br><br>
+                <strong>Monitoring Triggers:</strong> Automatic reserve reviews scheduled for days 7, 21, 45, 90, and 180 with 
+                variance analysis against prediction model.
+            </div>
+        `
+    };
+    
+    this.addResultCard(card);
+}
     addResultCard(card) {
         this.resultCards.push(card);
         this.showResultCard(this.resultCards.length - 1);
